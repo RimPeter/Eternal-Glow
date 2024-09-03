@@ -4,7 +4,7 @@ from .forms import ClientInformationForm
 def home(request):
     return render(request, 'client/home.html')
 
-def new_client(request):
+def register_client(request):
     if request.method == 'POST':
         form = ClientInformationForm(request.POST)
         if form.is_valid():
@@ -12,4 +12,4 @@ def new_client(request):
             return redirect('home')
     else:
         form = ClientInformationForm()
-    return render(request, 'client/new_client.html', {'form': form})
+    return render(request, 'client/register_client.html', {'form': form})
