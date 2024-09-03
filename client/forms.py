@@ -1,9 +1,9 @@
 from django import forms
-from .models import PatientInformation
+from .models import ClientInformation
 
-class PatientInformationForm(forms.ModelForm):
+class ClientInformationForm(forms.ModelForm):
     class Meta:
-        model = PatientInformation
+        model = ClientInformation
         fields = [
             'first_name',
             'last_name',
