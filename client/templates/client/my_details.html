@@ -2,21 +2,51 @@
 
 {% block content %}
 <div class="container">
-    <h2>My Details</h2>
-    {% if patient %}
-        <p><strong>Name:</strong> {{ patient.name }}</p>
-        <p><strong>Date of Birth:</strong> {{ patient.date_of_birth }}</p>
-        <p><strong>Address:</strong> {{ patient.address }}</p>
-        <p><strong>Medical Conditions:</strong> {{ patient.medical_conditions }}</p>
+  <h2 class="mt-4">My Profile</h2>
 
-        <a href="{% url 'update_patient' patient.id %}" class="btn btn-primary">Edit Details</a>
-        <form method="POST" action="{% url 'delete_patient' patient.id %}" style="display: inline-block;">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Delete Account</button>
-        </form>
-    {% else %}
-        <p>No patient details found. Please register as a patient.</p>
-        <a href="{% url 'register_patient' %}" class="btn btn-primary">Register</a>
-    {% endif %}
+  {% if patient %}
+  <div class="card mt-4 mb-4">
+    <div class="card-body">
+
+      <p>
+        <strong>Full Name:</strong> 
+        {{ patient.first_name }} 
+        {% if patient.middle_name %} {{ patient.middle_name }} {% endif %} 
+        {{ patient.last_name }}
+      </p>
+
+      <p><strong>Date of Birth:</strong> {{ patient.date_of_birth|date:"d M Y" }}</p>
+      <p><strong>Gender:</strong> {{ patient.get_gender_display }}</p>
+      <p><strong>Phone:</strong> {{ patient.phone }}</p>
+
+      <p>
+        <strong>Address:</strong> 
+        {{ patient.house_number }} {{ patient.street_name }}, {{ patient.post_code }}
+      </p>
+      <p><strong>Date of Visit:</strong> {{ patient.date_of_visit|date:"d M Y" }}</p>
+      
+      <h5 class="mt-4">Medical Conditions</h5>
+      <ul class="list-group mt-2">
+        {% for condition in medical_conditions %}
+        <li class="list-group-item">{{ condition.condition_name }}</li>
+        {% empty %}
+        <li class="list-group-item">No medical conditions listed.</li>
+        {% endfor %}
+      </ul>
+
+      <!-- Buttons for Update and Delete -->
+      <div class="mt-4">
+        <a href="{% url 'update_patient' patient.id %}" class="btn btn-warning">Update Details</a>
+        <a href="{% url 'delete_patient' patient.id %}" class="btn btn-danger">Delete Profile Data</a>
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+  <div class="alert alert-warning mt-4">
+    No patient details found. Please register as a patient.
+  </div>
+  <a href="{% url 'register_patient' %}" class="btn btn-primary">Register</a>
+  {% endif %}
 </div>
 {% endblock %}

@@ -54,8 +54,12 @@ def my_details(request):
         return redirect('register_patient')
 
     # If there are multiple patient records, just get the first one
-    patient = patient_qs.first()
-    return render(request, 'client/my_details.html', {'patient': patient})
+    patient = patient_qs.prefetch_related('medical_conditions').first()
+    context = {
+        'patient': patient,
+        'medical_conditions': patient.medical_conditions.all(), 
+    }
+    return render(request, 'client/my_details.html', context)
 
 @login_required
 def update_patient(request, patient_id):
