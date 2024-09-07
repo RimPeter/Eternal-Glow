@@ -20,3 +20,23 @@ button {
 button:hover {
   background-color: green;
 }
+
+.user-info-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+.user-info-container div {
+  display: flex;
+  align-items: center; /* Vertically center the <p> inside its container */
+}
+
+.user-info-container p {
+  border: 0; /* Removes any potential border from the <p> */
+  margin: 0; /* Optionally remove default margins */
+}
+
+.search-box {
+  margin-left: 15px;
+}

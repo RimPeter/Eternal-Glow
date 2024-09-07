@@ -1,3 +1,42 @@
-body {
-    /* background-color: blueviolet; */
+/* styles.css */
+/* body {
+  
+  background-color: purple;
+} */
+
+form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: green;
+}
+
+.user-info-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+.user-info-container div {
+  display: flex;
+  align-items: center; /* Vertically center the <p> inside its container */
+}
+
+.user-info-container p {
+  border: 0; /* Removes any potential border from the <p> */
+  margin: 0; /* Optionally remove default margins */
+}
+
+.search-box {
+  margin-left: 15px;
 }
