@@ -6,9 +6,28 @@ Register - My Dermatology Website
 
 {% block content %}
 <h1>Register</h1>
-<form method="POST">
+<form method="POST" class="needs-validation" novalidate>
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register Admin</button>
-  </form>
+    
+    <div class="mb-3">
+      {{ form.non_field_errors }}
+    </div>
+    
+    <!-- Loop through form fields -->
+    {% for field in form %}
+    <div class="mb-3">
+      <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+      {{ field }}
+      <!-- Error message if any -->
+      {% if field.errors %}
+      <div class="invalid-feedback">
+        {{ field.errors|striptags }}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+    
+    <button type="submit" class="btn btn-primary">Register Admin</button>
+</form>
+
 {% endblock %}
