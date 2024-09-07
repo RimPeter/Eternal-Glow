@@ -18,7 +18,7 @@ class Patient(models.Model):
     last_name = models.CharField(max_length=50)
 
     # Date of birth fields
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(null=True, blank=True)
     # Gender field
     GENDER_CHOICES = [
         ('M', 'Male'),
