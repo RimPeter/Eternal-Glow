@@ -37,3 +37,6 @@ def register_patient(request):
 
 def login(request):
     return render(request, 'client/login.html')
+
+def logout(request):
+    return render(request, 'client/logout.html')
