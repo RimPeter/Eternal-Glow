@@ -9,6 +9,17 @@ from .forms import PatientForm
 def home(request):
     return render(request, 'client/home.html')
 
+def register_admin(request):
+    if request.method == 'POST':
+        form = AdminRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            
+            return redirect('home')  # Replace with the URL to redirect after successful registration
+    else:
+        form = AdminRegistrationForm()
+    return render(request, 'client/register_admin.html', {'form': form})
+
 @login_required
 def register_patient(request):
     if request.method == 'POST':
@@ -23,3 +34,6 @@ def register_patient(request):
         form = PatientForm()
 
     return render(request, 'client/register_patient.html', {'form': form})
+
+def login(request):
+    return render(request, 'client/login.html')
