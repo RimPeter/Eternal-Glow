@@ -10,7 +10,7 @@ class MedicalCondition(models.Model):
 
 
 class Patient(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # Name fields
     first_name = models.CharField(max_length=50)

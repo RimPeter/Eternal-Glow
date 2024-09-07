@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>My Details</h2>
+    {% if patient %}
+        <p><strong>Name:</strong> {{ patient.name }}</p>
+        <p><strong>Date of Birth:</strong> {{ patient.date_of_birth }}</p>
+        <p><strong>Address:</strong> {{ patient.address }}</p>
+        <p><strong>Medical Conditions:</strong> {{ patient.medical_conditions }}</p>
+
+        <a href="{% url 'update_patient' patient.id %}" class="btn btn-primary">Edit Details</a>
+        <form method="POST" action="{% url 'delete_patient' patient.id %}" style="display: inline-block;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete Account</button>
+        </form>
+    {% else %}
+        <p>No patient details found. Please register as a patient.</p>
+        <a href="{% url 'register_patient' %}" class="btn btn-primary">Register</a>
+    {% endif %}
+</div>
+{% endblock %}
