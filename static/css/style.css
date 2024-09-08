@@ -4,6 +4,12 @@
   background-color: purple;
 } */
 
+#navbar {
+  background-color: #e6c2bf !important; 
+}
+
+
+
 form {
   background-color: #f9f9f9;
   padding: 20px;
@@ -40,3 +46,38 @@ button:hover {
 .search-box {
   margin-left: 15px;
 }
+
+.main-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 10%;
+    border: solid 5px #e6c2bf;
+}
+
+.home-title {
+    text-align: center;
+    font-size: 2em;
+    color: #1a1b33;
+    
+}
+/*slider on home page*/
+.carousel-item img {
+    width: 100%; /* Make sure the images fill the width */
+    height: 500px; /* Set a fixed height */
+    object-fit: cover; /* Ensures the image scales and crops if necessary to fit the height */
+}
+
+.carousel-caption {
+    color: #1a1b33;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)); /* Fading white background */
+    padding: 20px; /* Add padding around the text */
+    border-radius: 10px; /* Optional: Rounded corners for a softer look */
+}
+
+.carousel-caption h5,
+.carousel-caption p {
+    color: #1a1b33;
+}
+

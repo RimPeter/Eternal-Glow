@@ -4,6 +4,10 @@
   background-color: purple;
 } */
 
+.navbar {
+  color: #1a1b33;
+}
+
 form {
   background-color: #f9f9f9;
   padding: 20px;
@@ -39,4 +43,20 @@ button:hover {
 
 .search-box {
   margin-left: 15px;
+}
+
+.main-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 10%;
+    border: solid 5px #e6c2bf;
+}
+
+.home-title {
+    text-align: center;
+    font-size: 2em;
+    color: #1a1b33;
+    
 }

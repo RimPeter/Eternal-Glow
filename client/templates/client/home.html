@@ -1,9 +1,55 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 Home - My Dermatology Website
 {% endblock %}
 
 {% block content %}
-<h1>Welcome to My Dermatology Website</h1>
+<img
+src="{% static 'images/MAINLOGO_2.png' %}"
+alt="Home"
+class="main-logo"
+/>
+<br>
+<div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="static\images\slide1.jpg" class="d-block w-100" alt="lady washes face">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>The Glow Factor Facial</h5>
+        <p>Indulge in the perfect facial tailored to combat fatigue and restore radiance, leaving your skin refreshed, revitalised, and glowing with a newfound luminosity.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="static\images\slide2.jpg" class="d-block w-100" alt="lady gets botox injection">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Facial Contouring</h5>
+        <p>Dermal fillers serve as a valuable tool in enhancing facial features by adding volume to soft tissues, providing the ability to sculpt and contour the face.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="static\images\slide3.png" class="d-block w-100" alt="young lady feeling good">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>The Glass Facial</h5>
+        <p>Experience the rejuvenating effects of our Medical grade PURE Glass Facial, which not only oxygenates the skin but also fights aging signs. Thanks to oxygen infusion, our treatment ensures rapid and effective product absorption, making it a must-have for any major event. Enriched with antioxidants and enzymes, it leaves your skin glowing, purified, and velvety smooth.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
 {% endblock %}
