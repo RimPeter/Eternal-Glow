@@ -28,6 +28,7 @@ class Patient(models.Model):
 
     # Contact Information
     phone = models.CharField(max_length=15)
+    email = models.EmailField(default="default@example.com")
 
     # Address fields
     house_number = models.CharField(max_length=10)

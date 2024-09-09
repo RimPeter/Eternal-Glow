@@ -11,4 +11,6 @@ urlpatterns = [
     path('my-details/', views.my_details, name='my_details'),
     path('update-patient/<int:patient_id>/', views.update_patient, name='update_patient'),
     path('delete-patient/<int:patient_id>/', views.delete_patient, name='delete_patient'),
+    path('change-password/', views.change_password, name='change_password'),
+    path('password-change-success/', views.password_change_success, name='password_change_success'),
     ]

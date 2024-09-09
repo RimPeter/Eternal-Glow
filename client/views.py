@@ -3,8 +3,10 @@ from .forms import AdminRegistrationForm
 from .forms import PatientForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import PatientForm
+from .forms import PatientForm, ChangePasswordForm
 from .models import Patient
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
 
 
 
@@ -84,3 +86,32 @@ def delete_patient(request, patient_id):
         return redirect('home')
 
     return render(request, 'client/confirm_delete.html', {'patient': patient})
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.POST)
+        if form.is_valid():
+            old_password = form.cleaned_data.get('old_password')
+            new_password = form.cleaned_data.get('new_password1')
+            
+            user = request.user
+            
+            if not user.check_password(old_password):
+                form.add_error('old_password', 'Old password is incorrect')
+            else:
+                user.set_password(new_password)
+                user.save()
+                
+                update_session_auth_hash(request, user)
+                
+                messages.success(request, 'Your password has been updated successfully!')
+                return redirect('password_change_success')  
+    else:
+        form = ChangePasswordForm()
+
+    return render(request, 'client/change_password.html', {'form': form})
+
+def password_change_success(request):
+    return render(request, 'client/password_change_success.html')
+
