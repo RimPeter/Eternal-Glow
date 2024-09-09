@@ -44,6 +44,9 @@ class Patient(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.date_of_visit})"
 
+from django.db import models
+
+
 
 
 
