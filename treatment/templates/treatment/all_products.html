@@ -1,24 +1,23 @@
-{% extends 'base.html' %} 
-
-{% block title %} 
-All Products - My Dermatology Website 
-{%endblock %} 
-
-
-{% block content %}
+{% extends 'base.html' %} {% block title %} All Products - My Dermatology
+Website {%endblock %} {% block content %}
 <h1>All Products</h1>
-
 {% if products %}
-    <ul>
-        {% for product in products %}
-            <li>
-                <h2>{{ product.name }}</h2>
-                <p>{{ product.description }}</p>
-                <p>Price: ${{ product.price }}</p>
-            </li>
-        {% endfor %}
-    </ul>
+<ul>
+  {% for product in products %}
+
+  <div class="card w-75 mb-3">
+  <div class="card-body">
+    <h3 class="card-title">{{ product.product_name }}</h3>
+    <h5>Price: ${{ product.price }}</h5>
+    <p>{{ product.duration }} minutes</p>
+    
+    <h6>{{product.additional_info}}</h6>
+    <a href="#" class="btn btn-primary">Purchase</a>
+  </div>
+</div>
+
+  {% endfor %}
+</ul>
 {% else %}
-    <p>No products are available.</p>
-{% endif %}
-{% endblock %}
+<p>No products are available.</p>
+{% endif %} {% endblock %} 
