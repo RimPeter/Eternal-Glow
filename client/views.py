@@ -7,6 +7,8 @@ from .forms import PatientForm, ChangePasswordForm
 from .models import Patient
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
+from django.contrib.auth.models import User
+
 
 
 
@@ -114,4 +116,15 @@ def change_password(request):
 
 def password_change_success(request):
     return render(request, 'client/password_change_success.html')
+
+@login_required
+def delete_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    
+    if request.method == 'POST':
+        user.delete()
+        messages.success(request, 'The user has been deleted successfully.')
+        return redirect('home') 
+    
+    return render(request, 'client/confirm_delete_user.html', {'user': user})
 

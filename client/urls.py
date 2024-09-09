@@ -14,4 +14,6 @@ urlpatterns = [
     path('change-password/', views.change_password, name='change_password'),
     path('password-change-success/', views.password_change_success, name='password_change_success'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='client/login.html')),
+    path('delete-user/', views.delete_user, name='delete_user'),
+    path('delete-user/<int:user_id>/', views.delete_user, name='delete_user'),
     ]

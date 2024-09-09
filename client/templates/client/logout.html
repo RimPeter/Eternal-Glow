@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
-logout - My Dermatology Website
+Logout - My Dermatology Website
 {% endblock %}
 
 {% block content %}
-<h1>Welcome to My Dermatology Website</h1>
-<h1>You have been logged out</h1>
-<a href="{% url 'login' %}">Login again</a>
+<!-- Main container -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+            <h1 class="display-4 text-primary">Welcome to My Dermatology Website</h1>
+            <p class="lead">You have successfully logged out.</p>
 
+            <!-- Bootstrap button for login -->
+            <a href="{% url 'login' %}" class="btn btn-primary btn-lg mt-4">Login Again</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
