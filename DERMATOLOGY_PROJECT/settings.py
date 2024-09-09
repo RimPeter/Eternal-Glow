@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 # In settings.py
+LOGIN_URL = '/client/login/'
 LOGIN_REDIRECT_URL = '/'
 
 
@@ -79,7 +80,10 @@ ROOT_URLCONF = 'DERMATOLOGY_PROJECT.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

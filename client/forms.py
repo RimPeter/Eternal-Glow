@@ -32,7 +32,7 @@ class PatientForm(forms.ModelForm):
             'medical_conditions'
         ]
         widgets = {
-            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),  # Date selector widget
+            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),  
             'medical_conditions': forms.CheckboxSelectMultiple,  # Multiple checkboxes for medical conditions
         }
 
