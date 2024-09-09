@@ -13,4 +13,5 @@ urlpatterns = [
     path('delete-patient/<int:patient_id>/', views.delete_patient, name='delete_patient'),
     path('change-password/', views.change_password, name='change_password'),
     path('password-change-success/', views.password_change_success, name='password_change_success'),
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     ]
