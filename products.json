@@ -1,0 +1,530 @@
+[
+{
+    "model": "treatment.product",
+    "pk": 1,
+    "fields": {
+        "category": 1,
+        "body_part": 1,
+        "product_name": "Laser Eyebrow Tattoo Removal",
+        "price": "99.00",
+        "duration": 60,
+        "additional_info": ""
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 2,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Lip Enhancement 0.55ml - Classic technique",
+        "price": "150.00",
+        "duration": 30,
+        "additional_info": ""
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 3,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Lidocaine Infusion",
+        "price": "10.00",
+        "duration": 5,
+        "additional_info": "We use a localised dental block to ensure your lip appointment is as pain free as possible."
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 4,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Lip Enhancement 1.1ml - Classic Technique",
+        "price": "190.00",
+        "duration": 60,
+        "additional_info": ""
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 5,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Lip Dissolve & Refill Classic technique",
+        "price": "299.00",
+        "duration": 60,
+        "additional_info": "Lip Dissolving\r\n1.1ml lip enhancement"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 6,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Lip Enhancement 0.55ml - Russian Technique",
+        "price": "150.00",
+        "duration": 30,
+        "additional_info": ""
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 7,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Lip Enhancement 1.1ml - Russian technique",
+        "price": "190.00",
+        "duration": 60,
+        "additional_info": "An advanced technique to give maximum lift with a flat side profile. Minimal or no filler is required to be able to achieve these results."
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 8,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Lip dissolve & Refill Russian technique",
+        "price": "319.00",
+        "duration": 60,
+        "additional_info": "Lip dissolve and refill with Russian technique"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 9,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Lip Enhancement 0.55ml PURE Signature lips",
+        "price": "150.00",
+        "duration": 30,
+        "additional_info": "An advanced Lip Enhancement technique."
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 10,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Lip Enhancement 1.1ml PURE Signature Lips",
+        "price": "210.00",
+        "duration": 60,
+        "additional_info": "An advanced Lip Enhancement technique."
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 11,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Lip dissolve & refill Signature technique",
+        "price": "349.00",
+        "duration": 60,
+        "additional_info": "Lip dissolve and refilled with signature technique"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 12,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Dermal Filler Dissolvent",
+        "price": "170.00",
+        "duration": 60,
+        "additional_info": "An enzyme to dissolve dental filler anywhere amongst the face and lips"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 13,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Nasolabial folds 1.1ml",
+        "price": "200.00",
+        "duration": 60,
+        "additional_info": "Dermalax implant"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 14,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Marionette Lines 1.1ml",
+        "price": "200.00",
+        "duration": 60,
+        "additional_info": ""
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 15,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Perioral lines 1.1ml",
+        "price": "180.00",
+        "duration": 60,
+        "additional_info": "Smokers Lines"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 16,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Cheek Enhancement 1.1ml",
+        "price": "190.00",
+        "duration": 60,
+        "additional_info": "Dermalax implant"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 17,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Cheek Enhancement 2.2ml",
+        "price": "280.00",
+        "duration": 60,
+        "additional_info": ""
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 18,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Jaw Augmentation 1.1ml",
+        "price": "210.00",
+        "duration": 60,
+        "additional_info": "Dermalax implant"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 19,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Jaw Augmentation 2.2ml",
+        "price": "300.00",
+        "duration": 60,
+        "additional_info": "Dermalax implant"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 20,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Chin Enhancement 1.1ml",
+        "price": "190.00",
+        "duration": 60,
+        "additional_info": "Dermalax implant"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 21,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Non-surgical Rhinoplasty",
+        "price": "299.00",
+        "duration": 30,
+        "additional_info": "Nose shaping"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 22,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Oo ah just a little bit package - Filler",
+        "price": "365.00",
+        "duration": 90,
+        "additional_info": "3.3ml filler to be used anywhere among the face"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 23,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Oo ah a little bit more package - Filler",
+        "price": "465.00",
+        "duration": 90,
+        "additional_info": "4.4ml filler to be used anywhere among the face"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 24,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "You know what i'm looking for package - Filler",
+        "price": "565.00",
+        "duration": 90,
+        "additional_info": "5.5ml filler to be used anywhere among the face"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 25,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "8 point facelift",
+        "price": "699.00",
+        "duration": 60,
+        "additional_info": "Strategically placing Hyaluronic acid at 8 points of the face to rewind the years of aging."
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 26,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "The Liquid Face Lift",
+        "price": "949.00",
+        "duration": 120,
+        "additional_info": "10ml of hyaluronic acid"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 27,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Anti-wrinkle injections - Female - 1 area",
+        "price": "150.00",
+        "duration": 30,
+        "additional_info": "For Females 1 Area"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 28,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Anti-wrinkle injections - Female - 2 areas",
+        "price": "180.00",
+        "duration": 30,
+        "additional_info": "For Female 2 Area's"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 29,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Anti-wrinkle injections - Female - 3 areas",
+        "price": "200.00",
+        "duration": 30,
+        "additional_info": "Foe Females 3 Area's"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 30,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Anti-wrinkle injections - Frozen look - Female - 2 areas",
+        "price": "250.00",
+        "duration": 30,
+        "additional_info": "Frozen look for Female 2 areas"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 31,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Anti-wrinkle injections - Frozen look - Female - 3 areas",
+        "price": "300.00",
+        "duration": 30,
+        "additional_info": "Frozen look for Female 3 areas"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 32,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Anti-wrinkle injections - Male - 1 areas",
+        "price": "200.00",
+        "duration": 30,
+        "additional_info": "For Male"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 33,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Anti-wrinkle injections - Male - 2 areas",
+        "price": "280.00",
+        "duration": 30,
+        "additional_info": "For Males"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 34,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Anti-wrinkle injections - Male - 3 areas",
+        "price": "299.00",
+        "duration": 30,
+        "additional_info": "For Males 3 Areas"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 35,
+    "fields": {
+        "category": 2,
+        "body_part": 8,
+        "product_name": "Muscle relaxant injections - Calf Reduction",
+        "price": "400.00",
+        "duration": 60,
+        "additional_info": "Calf reduction"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 36,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Muscle relaxant injections - Teeth Grinding",
+        "price": "299.00",
+        "duration": 30,
+        "additional_info": ""
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 37,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Muscle relaxant injections - Jaw Slimming",
+        "price": "299.00",
+        "duration": 30,
+        "additional_info": ""
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 38,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Muscle relaxant injections - Smokers Lines",
+        "price": "150.00",
+        "duration": 30,
+        "additional_info": ""
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 39,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Muscle relaxant injections - Bunny Lines",
+        "price": "150.00",
+        "duration": 30,
+        "additional_info": ""
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 40,
+    "fields": {
+        "category": 2,
+        "body_part": 4,
+        "product_name": "Muscle relaxant injections - Neck bands",
+        "price": "250.00",
+        "duration": 30,
+        "additional_info": "Platysma bands"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 41,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Muscle relaxant injections - Excessive Sweating",
+        "price": "400.00",
+        "duration": 30,
+        "additional_info": "Hypohydrosis (excessive sweating)"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 42,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Muscle relaxant injections - Nose tip lift",
+        "price": "150.00",
+        "duration": 30,
+        "additional_info": "Nose tip lift"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 43,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Muscle relaxant injections - Gummy Smile Reduction",
+        "price": "150.00",
+        "duration": 30,
+        "additional_info": "Gummy smile reduction"
+    }
+},
+{
+    "model": "treatment.product",
+    "pk": 44,
+    "fields": {
+        "category": 2,
+        "body_part": 1,
+        "product_name": "Muscle Relaxing Injections - Downward Smile",
+        "price": "150.00",
+        "duration": 30,
+        "additional_info": ""
+    }
+}
+]
