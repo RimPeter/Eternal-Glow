@@ -1,8 +1,6 @@
-/* styles.css */
-/* body {
-  
-  background-color: purple;
-} */
+body {
+  font-family: 'Merriweather', serif;
+}
 
 #navbar {
   background-color: #e6c2bf !important; 
