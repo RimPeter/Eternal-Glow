@@ -1,23 +1,36 @@
-{% extends 'base.html' %} {% block title %} All Products - My Dermatology
-Website {%endblock %} {% block content %}
-<h1>All Products</h1>
-{% if products %}
-<ul>
-  {% for product in products %}
+{% extends 'base.html' %} 
+{% block title %} All Products - My Dermatology Website {%endblock %} 
+{% block content %}
 
-  <div class="card w-75 mb-3">
-  <div class="card-body">
-    <h3 class="card-title">{{ product.product_name }}</h3>
-    <h5>Price: ${{ product.price }}</h5>
-    <p>{{ product.duration }} minutes</p>
-    
-    <h6>{{product.additional_info}}</h6>
-    <a href="#" class="btn btn-primary">Purchase</a>
+<h1>All Products</h1>
+
+{% if products %}
+<div class="container">
+  <!-- Flexbox container for products -->
+  <div class="row d-flex flex-wrap justify-content-start">
+    {% for product in products %}
+    <!-- Flex item with Bootstrap column width settings -->
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex">
+      <div class="card w-100 d-flex flex-column">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title"><strong>{{ product.product_name }}</strong></h5>
+          <hr>
+          <h6>Price: ${{ product.price }}</h6>
+          <p>{{ product.duration }} minutes</p>
+          <h6>{{product.additional_info}}</h6>
+          <a href="#" class="btn btn-primary mt-auto">Purchase</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
   </div>
 </div>
 
-  {% endfor %}
-</ul>
 {% else %}
 <p>No products are available.</p>
-{% endif %} {% endblock %} 
+{% endif %} 
+
+{% endblock %}
+
+
+
