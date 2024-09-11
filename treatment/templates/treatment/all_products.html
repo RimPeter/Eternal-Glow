@@ -13,6 +13,18 @@
     </div>
 </form>
 
+<div class="dropdown mb-3">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        Sort by
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" href="?sort=price_asc{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Price Ascending</a></li>
+        <li><a class="dropdown-item" href="?sort=price_desc{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Price Descending</a></li>
+        <li><a class="dropdown-item" href="?sort=duration_asc{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Duration Ascending</a></li>
+        <li><a class="dropdown-item" href="?sort=duration_desc{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Duration Descending</a></li>
+    </ul>
+</div>
+
 {% if request.GET.q %}
     <a href="{% url 'all_products' %}" class="btn btn-link mb-3">Back to all products</a>
 {% endif %}
