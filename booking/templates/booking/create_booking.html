@@ -1,0 +1,50 @@
+{% extends 'base.html' %} 
+
+{% block title %} 
+Home - My Dermatology Website 
+{%endblock %} 
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Book a Product</h2>
+
+  <form method="POST" action="{% url 'create_booking' %}">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+      <label for="product" class="form-label">Select Product</label>
+      <select class="form-select" id="product" name="product" required>
+        <option value="">Choose a product...</option>
+        {% for product in products %}
+          <option value="{{ product.id }}" data-price="{{ product.price }}" data-duration="{{ product.duration }}">
+            {{ product.product_name }} ({{ product.duration }} mins)
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="date" class="form-label">Select Date</label>
+      <input type="date" class="form-control" id="date" name="date" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="time" class="form-label">Select Time</label>
+      <select class="form-select" id="time" name="time" required>
+        <option value="">Choose a start time...</option>
+        {% for slot in available_slots %}
+          <option value="{{ slot.time }}">{{ slot.time }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="text" class="form-control" id="price" name="price" readonly>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Book Now</button>
+  </form>
+</div>
+
+{% endblock %}

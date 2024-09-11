@@ -38,7 +38,6 @@
   
   <body>
     <header class="fixed-top">
-      <!-- Navigation bar -->
       <nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'home' %}"
@@ -47,6 +46,9 @@
               alt="Home"
               style="height: 70px; width: 70px; border-radius: 8%"
           /></a>
+          <a class="nav-link" role="button" href="{% url 'create_booking' %}">
+Booking
+          </a>
           <button
             class="navbar-toggler"
             type="button"
@@ -117,7 +119,6 @@
                     <a class="dropdown-item" href="{% url 'change_password' %}" >Password</a >
                   </li>
                   <li>
-                    
                       {% if request.user.is_superuser %}
                         <a class="dropdown-item" href="/admin/">Admin (superuser)</a>
                       {% endif %}
@@ -128,7 +129,6 @@
               </li>
             </ul>
 
-            <!-- Conditional Rendering for Authentication -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               {% if user.is_authenticated %}
 

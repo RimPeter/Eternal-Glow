@@ -20,18 +20,11 @@ class BodyPart(models.Model):
 
 
 class Product(models.Model):
-    # ForeignKey to Category model
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
-    # ForeignKey to BodyPart model, optional field
     body_part = models.ForeignKey(BodyPart, on_delete=models.SET_NULL, blank=True, null=True)
-
     product_name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-
-    # Duration in minutes, optional field
     duration = models.IntegerField(blank=True, null=True, help_text="Duration in minutes")
-    
     additional_info = models.TextField(blank=True, null=True)
 
     def __str__(self):

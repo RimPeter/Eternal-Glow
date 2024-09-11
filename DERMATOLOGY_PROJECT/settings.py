@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     
     'client',
     'treatment',
+    'booking',
     
     'allauth',
     'allauth.account',
