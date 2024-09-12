@@ -39,3 +39,11 @@ def booking_success(request):
 @login_required
 def booking_failed(request):
     return render(request, 'booking/booking_failed.html', {'message': "You already have a booking on this date."})
+
+@login_required
+def booking_list(request):
+    bookings = Booking.objects.all().order_by('-booked_on') 
+    context = {
+        'bookings': bookings
+    }
+    return render(request, 'booking/booking_list.html', context) 

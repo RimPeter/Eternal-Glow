@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+
+{% block title %} 
+Home - My Dermatology Website 
+{%endblock %} 
+
+{% block content %}
+
+{% if bookings %}
+<div class="container">
+  <div class="row d-flex flex-wrap justify-content-start">
+    {% for booking in bookings %}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex">
+      <div class="card w-100 d-flex flex-column">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title"><strong>{{ booking.product }}</strong></h5>
+          <hr>
+          <h6>Booked for {{ booking.booking_date|date:"d/m/Y" }}-{{ booking.time_slot }}</h6>
+          
+          <hr>
+          <h6>Payment status is: <strong>
+            {{ booking.payment_status|yesno:"Paid,Unpaid" }}
+          </strong></h6>
+          <hr>
+          <p>Created on {{ booking.booked_on|date:"d/m/Y" }}</p>
+          <a href="#" class="btn btn-primary mt-auto">Change</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% else %}
+<p>No bookings are available.</p>
+{% endif %} 
+
+            
+{% endblock %}
