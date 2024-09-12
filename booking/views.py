@@ -7,16 +7,16 @@ from .models import Product, TimeSlot, Booking
 def create_booking(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
-        booking = form.save(commit=False)
-        booking.patient = request.user.patient  
-        
-        # Check for duplicate booking
-        if Booking.objects.filter(patient=booking.patient, booking_date=booking.booking_date).exists():
-            return redirect('booking-failed')
-        else:
-            if form.is_valid():
-                booking.payment_status = False  # Set payment status in the backend
-                booking.save()  # Save the booking
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.patient = request.user.patient
+
+            # Check for duplicate booking
+            if Booking.objects.filter(patient=booking.patient, booking_date=booking.booking_date).exists():
+                return redirect('booking-failed')
+            else:
+                booking.payment_status = False  # Set payment status
+                booking.save()
                 return redirect('booking-success')
 
     else:

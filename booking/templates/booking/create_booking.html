@@ -5,34 +5,22 @@
 
   <form method="POST" action="{% url 'create_booking' %}">
     {% csrf_token %}
-
-    <!-- Product Selection -->
+    
+    {{ form.non_field_errors }}
     <label for="product">Select Product:</label>
-    <select name="product" id="product">
-      {% for product in products %}
-      <option value="{{ product.id }}">{{ product.product_name }}</option>
-      {% endfor %}
-    </select>
+    {{ form.product }}
 
-    <!-- Time Slot Selection -->
     <label for="time_slot">Select Time Slot:</label>
-    <select name="time_slot" id="time_slot">
-      {% for timeslot in time_slots %}
-      <option value="{{ timeslot.id }}">{{ timeslot.slot }}</option>
-      {% endfor %}
-    </select>
+    {{ form.time_slot }}
 
-    <!-- Booking Date -->
     <label for="booking_date">Booking Date:</label>
-    <input type="date" name="booking_date" id="booking_date" required />
+    {{ form.booking_date }}
 
-    <!-- Additional Notes -->
     <label for="additional_notes">Additional Notes (Optional):</label>
-    <textarea name="additional_notes" id="additional_notes"></textarea>
+    {{ form.additional_notes }}
 
-    <!-- Submit Button -->
     <button type="submit">Submit Booking</button>
-  </form>
+</form>
 </div>
   {% endblock %}
 </div>
