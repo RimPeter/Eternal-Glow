@@ -5,6 +5,10 @@ from .models import Product, TimeSlot, Booking
 
 @login_required
 def create_booking(request):
+    product_id = request.GET.get('product')  # Get the product ID from the query parameters
+    selected_product = None
+    if product_id:
+        selected_product = Product.objects.get(id=product_id)
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
@@ -20,7 +24,7 @@ def create_booking(request):
                 return redirect('booking-success')
 
     else:
-        form = BookingForm()
+        form = BookingForm(initial={'time_slot': time_slots.first()})
 
     products = Product.objects.all()
     time_slots = TimeSlot.objects.all()
@@ -29,6 +33,7 @@ def create_booking(request):
         'form': form,
         'products': products,
         'time_slots': time_slots,
+        'selected_product': selected_product
     })
 
     

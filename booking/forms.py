@@ -27,3 +27,9 @@ class BookingForm(forms.ModelForm):
             raise forms.ValidationError("You cannot book for today or any past dates.")
 
         return booking_date
+    
+    def clean_time_slot(self):
+        time_slot = self.cleaned_data.get('time_slot')
+        if not time_slot:
+            raise forms.ValidationError("You must select a valid time slot.")
+        return time_slot
