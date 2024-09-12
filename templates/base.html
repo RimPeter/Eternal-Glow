@@ -46,9 +46,7 @@
               alt="Home"
               style="height: 70px; width: 70px; border-radius: 8%"
           /></a>
-          <a class="nav-link" role="button" href="{% url 'create_booking' %}">
-Booking
-          </a>
+          
           <button
             class="navbar-toggler"
             type="button"
@@ -81,7 +79,23 @@ Booking
                   <li><a class="dropdown-item" href="{% url 'all_products' %}">All Products</a></li>
                 </ul>
               </li>
-
+<li class="nav-item dropdown">
+  {% if request.user.is_authenticated %}
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Booking
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Manage Booking</a></li>
+                  <li><a class="dropdown-item" href="{% url 'create_booking' %}">Create Booking </a></li>
+                </ul>
+              </li>
+              {% endif %}
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
@@ -158,17 +172,6 @@ Booking
               {% endif %}
             </ul>
 
-            <form class="d-flex search-box" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
           </div>
         </div>
       </nav>
