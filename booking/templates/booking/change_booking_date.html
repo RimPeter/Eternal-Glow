@@ -5,12 +5,5 @@ Home - My Dermatology Website
 {%endblock %} 
 
 {% block content %}
-   <h1>Change Booking Date for {{ booking.patient }}</h1>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Update Booking Date</button>
-    </form>
-
+   
 {% endblock %}
