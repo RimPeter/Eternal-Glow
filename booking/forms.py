@@ -1,7 +1,7 @@
 from django import forms
 from .models import Booking
 from django.core.exceptions import ValidationError
-from datetime import date
+from datetime import date, timedelta
 
 class BookingForm(forms.ModelForm):
     class Meta:
@@ -14,9 +14,16 @@ class BookingForm(forms.ModelForm):
     def clean_booking_date(self):
         booking_date = self.cleaned_data.get('booking_date')
         today = date.today()
+        max_future_date = today + timedelta(days=60)
         
-        # Check if the booking date is today or in the past
+        
+        if not booking_date:
+            raise forms.ValidationError("Booking date is required.")
+
+        if booking_date > max_future_date:
+            raise forms.ValidationError("You cannot book more than 60 days in advance.")
+
         if booking_date <= today:
-            raise ValidationError("You cannot book for today or any past dates.")
-        
+            raise forms.ValidationError("You cannot book for today or any past dates.")
+
         return booking_date
