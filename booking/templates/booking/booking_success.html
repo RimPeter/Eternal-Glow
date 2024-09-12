@@ -1,0 +1,12 @@
+{% extends 'base.html' %} 
+
+{% block title %} 
+Home - My Dermatology Website 
+{%endblock %} 
+
+{% block content %}
+<h1>Booking Successful!</h1>
+<p>Your booking has been successfully completed.</p>
+<a href="{% url 'create_booking' %}">Create another booking</a>
+
+{% endblock %}

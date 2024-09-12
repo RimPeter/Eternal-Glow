@@ -1,21 +1,18 @@
 from django.contrib import admin
-from .models import Timetable, Booking
+from .models import Booking, TimeSlot
 
-
-class TimetableAdmin(admin.ModelAdmin):
-    list_display = ('date', 'time')  
-    list_filter = ('date',)  
-    search_fields = ('date',)  
-
+@admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('user', 'product', 'price', 'get_booking_time') 
-    list_filter = ('product', 'user')  
-    search_fields = ('user__username', 'product__product_name')  
-    filter_horizontal = ('timetables',)  
+    list_display = ('patient', 'product', 'booking_date', 'time_slot', 'payment_status', 'booked_on')
+    search_fields = ('patient__first_name', 'patient__last_name', 'product__product_name')
+    list_filter = ('payment_status', 'booking_date')
+    date_hierarchy = 'booking_date'
 
-    def get_booking_time(self, obj):
-        return obj.get_booking_time()  
-    get_booking_time.short_description = 'Booking Time'
+@admin.register(TimeSlot)
+class TimeSlotAdmin(admin.ModelAdmin):
+    list_display = ('slot',)
 
-admin.site.register(Timetable, TimetableAdmin)
-admin.site.register(Booking, BookingAdmin)
+admin.site.site_header = "Clinic Booking System"
+admin.site.site_title = "Clinic Booking System"
+admin.site.index_title = "Welcome to Clinic Booking System"
+
