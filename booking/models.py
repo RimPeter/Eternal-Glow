@@ -19,6 +19,7 @@ class Booking(models.Model):
     payment_status = models.BooleanField(default=False)
     booked_on = models.DateTimeField(auto_now_add=True)
     additional_notes = models.TextField(blank=True, null=True)
+    #stripe_payment_intent_id = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         unique_together = ('patient', 'booking_date')  # Ensure no duplicates at the DB level

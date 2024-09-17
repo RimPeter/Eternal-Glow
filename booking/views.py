@@ -5,7 +5,6 @@ from .models import Product, TimeSlot, Booking
 from django.urls import reverse
 
 import stripe
-from django.http import JsonResponse
 from .models import Booking
 import stripe_keys
 from django.views.decorators.csrf import csrf_exempt
@@ -14,6 +13,9 @@ from django.utils.encoding import smart_str
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
+from django.contrib import messages
+import datetime 
 
 
 @login_required
@@ -53,15 +55,6 @@ def create_booking(request):
     })
 
     
-# @login_required
-# def booking_success(request, booking_id):
-#     booking = get_object_or_404(Booking, id=booking_id)
-
-#     return render(request, 'booking/booking_success.html', {
-#         'booking': booking,
-#         'stripe_public_key': stripe_keys.STRIPE_PUBLISHABLE_KEY  
-#     })
-    
 @login_required
 def booking_failed(request):
     return render(request, 'booking/booking_failed.html', {'message': "You already have a booking on this date."})
@@ -78,7 +71,6 @@ stripe.api_key = stripe_keys.STRIPE_SECRET_KEY
 
 @login_required
 def create_checkout_session(request, booking_id):
-    #booking = Booking.objects.get(id=booking_id)
     booking = get_object_or_404(Booking, id=booking_id)
     
     price_in_pennies = int(booking.product.price * 100)
@@ -105,31 +97,7 @@ def create_checkout_session(request, booking_id):
     
     return redirect(session.url)
 
-    # try:
-    #     checkout_session = stripe.checkout.Session.create(
-    #         payment_method_types=['card'],
-    #         line_items=[
-    #             {
-    #                 'price_data': {
-    #                     'currency': 'gbp',
-    #                     'product_data': {
-    #                         'name': booking.product.product_name,
-    #                     },
-    #                     'unit_amount': int(booking.product.price * 100),  
-    #                 },
-    #                 'quantity': 1,
-    #             },
-    #         ],
-    #         mode='payment',
-    #         success_url=request.build_absolute_uri('/payment-success/'),  
-    #         cancel_url=request.build_absolute_uri('/payment-cancel/'),    
-    #     )
-    #     return JsonResponse({
-    #         'id': checkout_session.id
-    #     })
-    # except Exception as e:
-    #     return JsonResponse({'error': str(e)}, status=403)
-    
+@login_required
 def payment_success(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     # Update booking payment status
@@ -147,3 +115,126 @@ def stripe_webhook(request):
 
 def handle_checkout_session(session):
     return None
+
+@login_required
+def manage_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, patient=request.user.patient)
+    products = Product.objects.all()
+    time_slots = TimeSlot.objects.all()
+    today = datetime.date.today()
+
+    return render(request, 'booking/manage_booking.html', {
+        'booking': booking,
+        'products': products,
+        'time_slots': time_slots,
+        'today': today
+    })
+    
+@login_required
+def change_booking_date(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, patient=request.user.patient)
+    today = datetime.date.today()
+
+    if booking.booking_date <= today:
+        messages.error(request, "You cannot change the booking on the same day.")
+        return redirect('manage_booking', booking_id=booking.id)
+
+    if request.method == 'POST':
+        new_date_str = request.POST.get('new_booking_date')
+        new_time_slot_id = request.POST.get('new_time_slot')
+        if not new_date_str or not new_time_slot_id:
+            messages.error(request, "Please select a new date and time slot.")
+            return redirect('manage_booking', booking_id=booking.id)
+        
+        try:
+            new_date = datetime.datetime.strptime(new_date_str, '%Y-%m-%d').date()
+        except ValueError:
+            messages.error(request, "Invalid date format.")
+            return redirect('manage_booking', booking_id=booking.id)
+        
+        new_time_slot = get_object_or_404(TimeSlot, id=new_time_slot_id)
+
+        if new_date <= today:
+            messages.error(request, "You cannot select today's date or a past date.")
+            return redirect('manage_booking', booking_id=booking.id)
+
+        # Check for conflicting bookings
+        conflict = Booking.objects.filter(
+            booking_date=new_date,
+            time_slot=new_time_slot,
+        ).exclude(id=booking.id).exists()
+        
+        if conflict:
+            messages.error(request, "The selected date and time slot is already booked.")
+            return redirect('manage_booking', booking_id=booking.id)
+
+        # Update the booking
+        booking.booking_date = new_date
+        booking.time_slot = new_time_slot
+        booking.save()
+
+        messages.success(request, "Booking date and time updated successfully.")
+        return redirect('manage_booking', booking_id=booking.id)
+
+    else:
+        return redirect('manage_booking', booking_id=booking.id)
+
+@login_required
+def change_booking_product(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, patient=request.user.patient)
+    today = datetime.date.today()
+
+    if booking.booking_date <= today:
+        messages.error(request, "You cannot change the booking on the same day.")
+        return redirect('manage_booking', booking_id=booking.id)
+
+    if request.method == 'POST':
+        new_product_id = request.POST.get('new_product')
+        new_product = get_object_or_404(Product, id=new_product_id)
+        # Calculate price difference
+        price_difference = new_product.price - booking.product.price
+
+        # Handle additional payment or refund
+        if price_difference > 0:
+            # Need to collect additional payment
+            # Create a new Stripe checkout session for the difference
+            # Redirect to the payment page
+            pass
+        elif price_difference < 0:
+            # Need to process a partial refund
+            # Use Stripe API to refund the difference
+            pass
+
+        # Update the booking with the new product
+        booking.product = new_product
+        booking.save()
+
+        messages.success(request, "Product changed successfully.")
+        return redirect('manage_booking', booking_id=booking.id)
+
+    else:
+        return redirect('manage_booking', booking_id=booking.id)
+
+@login_required
+def cancel_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, patient=request.user.patient)
+    today = datetime.date.today()
+
+    if booking.booking_date <= today:
+        messages.error(request, "You cannot cancel the booking on the same day.")
+        return redirect('manage_booking', booking_id=booking.id)
+
+    if request.method == 'POST':
+        if booking.payment_status:
+            # Process refund via Stripe
+            # You need to store the Stripe payment intent ID when the payment is made
+            pass
+
+        # Cancel the booking
+        booking.delete()
+
+        messages.success(request, "Booking canceled successfully.")
+        return redirect('booking_list')
+
+    else:
+        return redirect('manage_booking', booking_id=booking.id)

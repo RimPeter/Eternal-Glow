@@ -22,13 +22,13 @@ Home - My Dermatology Website
             <strong>
               {{ booking.payment_status|yesno:"Paid,Unpaid" }}
               {% if not booking.payment_status %}
-                <a href="#" class="btn btn-primary mt-auto">Pay Now</a>
+                <a href="{% url 'create_checkout_session' booking.id %}" class="btn btn-primary mt-auto">Pay Now</a>
               {% endif %}
             </strong>
           </h6>
           <hr>
           <p>Created on {{ booking.booked_on|date:"d/m/Y" }}</p>
-          <a href="#" class="btn btn-primary mt-auto">Manage</a>
+          <a href="{% url 'manage_booking' booking.id %}" class="btn btn-primary mt-auto">Manage</a>
         </div>
       </div>
     </div>
@@ -39,26 +39,5 @@ Home - My Dermatology Website
 {% else %}
 <p>No bookings are available.</p>
 {% endif %} 
-<script>
-  document.getElementById('payButton-{{ booking.id }}').addEventListener('click', function() {
-      fetch("/create-checkout-session/{{ booking.id }}/", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-              "X-CSRFToken": "{{ csrf_token }}"
-          },
-      })
-      .then(response => response.json())
-      .then(session => {
-          return stripe.redirectToCheckout({ sessionId: session.id });
-      })
-      .then(result => {
-          if (result.error) {
-              alert(result.error.message);
-          }
-      })
-      .catch(error => console.error("Error:", error));
-  });
-</script>
             
 {% endblock %}

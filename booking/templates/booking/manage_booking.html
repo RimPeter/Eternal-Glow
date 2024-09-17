@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Booking{% endblock %}
+
+{% block content %}
+<h1>Manage Your Booking</h1>
+
+<div class="booking-details">
+    <h2>Booking Details</h2>
+    <p><strong>Product:</strong> {{ booking.product.product_name }}</p>
+    <p><strong>Date:</strong> {{ booking.booking_date|date:"d/m/Y" }}</p>
+    <p><strong>Time Slot:</strong> {{ booking.time_slot }}</p>
+    <p><strong>Payment Status:</strong> {{ booking.payment_status|yesno:"Paid,Unpaid" }}</p>
+</div>
+
+{% if booking.booking_date > today %}
+    <div class="change-date mt-4">
+        <h3>Change Date</h3>
+        <form method="POST" action="{% url 'change_booking_date' booking.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="new_booking_date">Select New Date:</label>
+                <input type="date" id="new_booking_date" name="new_booking_date" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="new_time_slot">Select New Time Slot:</label>
+                <select id="new_time_slot" name="new_time_slot" class="form-control">
+                    {% for slot in time_slots %}
+                        <option value="{{ slot.id }}">{{ slot }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Change Date</button>
+        </form>
+    </div>
+
+    <div class="change-product mt-4">
+        <h3>Change Product</h3>
+        <form method="POST" action="{% url 'change_booking_product' booking.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="new_product">Select New Product:</label>
+                <select id="new_product" name="new_product" class="form-control">
+                    {% for product in products %}
+                        <option value="{{ product.id }}" {% if product == booking.product %}selected{% endif %}>
+                            {{ product.product_name }} - £{{ product.price }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Change Product</button>
+        </form>
+    </div>
+
+    <div class="cancel-booking mt-4">
+        <h3>Cancel Booking</h3>
+        <p>If you cancel this booking, {% if booking.payment_status %}you will receive a refund.{% else %}no charges will be made.{% endif %}</p>
+        <form method="POST" action="{% url 'cancel_booking' booking.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Cancel Booking</button>
+        </form>
+    </div>
+{% else %}
+    <div class="alert alert-warning mt-4">
+        <p>You cannot make changes on the same day of the booking.</p>
+    </div>
+{% endif %}
+
+{% endblock %}
