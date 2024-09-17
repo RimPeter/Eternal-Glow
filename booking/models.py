@@ -1,6 +1,6 @@
 from django.db import models
-from client.models import Patient  # Importing the Patient model from the client app
-from treatment.models import Product  # Importing the Product model from the treatment app
+from client.models import Patient  
+from treatment.models import Product  
 from django.core.exceptions import ValidationError
 from datetime import date, timedelta
 
@@ -19,7 +19,7 @@ class Booking(models.Model):
     payment_status = models.BooleanField(default=False)
     booked_on = models.DateTimeField(auto_now_add=True)
     additional_notes = models.TextField(blank=True, null=True)
-    #stripe_payment_intent_id = models.CharField(max_length=255, null=True, blank=True)
+    stripe_payment_intent_id = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         unique_together = ('patient', 'booking_date')  # Ensure no duplicates at the DB level
