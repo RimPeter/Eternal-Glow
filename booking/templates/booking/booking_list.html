@@ -18,12 +18,17 @@ Home - My Dermatology Website
           <h6>Booked for {{ booking.booking_date|date:"d/m/Y" }}-{{ booking.time_slot }}</h6>
           
           <hr>
-          <h6>Payment status is: <strong>
-            {{ booking.payment_status|yesno:"Paid,Unpaid" }}
-          </strong></h6>
+          <h6>Payment status is: 
+            <strong>
+              {{ booking.payment_status|yesno:"Paid,Unpaid" }}
+              {% if not booking.payment_status %}
+                <a href="#" class="btn btn-primary mt-auto">Pay Now</a>
+              {% endif %}
+            </strong>
+          </h6>
           <hr>
           <p>Created on {{ booking.booked_on|date:"d/m/Y" }}</p>
-          <a href="#" class="btn btn-primary mt-auto">Change</a>
+          <a href="#" class="btn btn-primary mt-auto">Manage</a>
         </div>
       </div>
     </div>
