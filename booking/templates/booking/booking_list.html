@@ -39,6 +39,26 @@ Home - My Dermatology Website
 {% else %}
 <p>No bookings are available.</p>
 {% endif %} 
-
+<script>
+  document.getElementById('payButton-{{ booking.id }}').addEventListener('click', function() {
+      fetch("/create-checkout-session/{{ booking.id }}/", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+              "X-CSRFToken": "{{ csrf_token }}"
+          },
+      })
+      .then(response => response.json())
+      .then(session => {
+          return stripe.redirectToCheckout({ sessionId: session.id });
+      })
+      .then(result => {
+          if (result.error) {
+              alert(result.error.message);
+          }
+      })
+      .catch(error => console.error("Error:", error));
+  });
+</script>
             
 {% endblock %}
