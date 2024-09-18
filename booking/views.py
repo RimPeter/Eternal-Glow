@@ -263,7 +263,7 @@ def change_booking_product(request, booking_id):
                     # Update the booking with the new product
                     booking.product = new_product
                     booking.save()
-                    messages.success(request, f"Product changed successfully. A refund of £{refund_amount} has been processed.")
+                    messages.success(request, f"Product changed successfully. A refund of £{refund_amount} will be processed within the next 5 working days.")
                     return redirect('manage_booking', booking_id=booking.id)
                 except Exception as e:
                     messages.error(request, "There was an error processing your refund. Please contact support.")
