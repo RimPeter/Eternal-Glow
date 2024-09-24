@@ -69,7 +69,7 @@ def booking_list(request):
     }
     return render(request, 'booking/booking_list.html', context) 
 
-stripe.api_key = stripe_keys.STRIPE_SECRET_KEY
+#stripe.api_key = stripe_keys.STRIPE_SECRET_KEY
 
 @login_required
 def create_checkout_session(request, booking_id):
