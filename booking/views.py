@@ -6,7 +6,6 @@ from django.urls import reverse
 
 import stripe
 from .models import Booking
-import stripe_keys
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.utils.encoding import smart_str
@@ -16,6 +15,9 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
 import datetime 
+import os
+
+stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
 
 @login_required
