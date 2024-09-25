@@ -33,7 +33,12 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 #DEBUG = True
 
-ALLOWED_HOSTS = ['your-app-name.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'eternal-glow-b087f9869b00.herokuapp.com',
+    'your-app-name.herokuapp.com',
+    'localhost',
+    '127.0.0.1'
+    ]
 
 
 # Application definition
