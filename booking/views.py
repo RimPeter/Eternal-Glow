@@ -12,7 +12,8 @@ from django.utils.encoding import smart_str
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
+from client.models import Patient  
+from client.forms import PatientForm
 from django.contrib import messages
 import datetime 
 import os
@@ -22,7 +23,7 @@ stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
 @login_required
 def create_booking(request):
-    product_id = request.GET.get('product')  # Get the product ID from the query parameters
+    product_id = request.GET.get('product')  
     selected_product = None
     if product_id:
         selected_product = get_object_or_404(Product, id=product_id)
@@ -34,15 +35,20 @@ def create_booking(request):
         
         if form.is_valid():
             booking = form.save(commit=False)
-            booking.patient = request.user.patient
+            if hasattr(request.user, 'patient'):
+                booking.patient = request.user.patient
 
-            # Check for duplicate booking
-            if Booking.objects.filter(patient=booking.patient, booking_date=booking.booking_date).exists():
-                return redirect('booking-failed')
+                # Check for duplicate booking
+                if Booking.objects.filter(patient=booking.patient, booking_date=booking.booking_date).exists():
+                    messages.error(request, "You already have a booking on this date.")
+                    return redirect('booking-failed')
+                else:
+                    booking.payment_status = False  
+                    booking.save()
+                    return redirect('create_checkout_session', booking_id=booking.id)
             else:
-                booking.payment_status = False  # Set payment status
-                booking.save()
-                return redirect('create_checkout_session', booking_id=booking.id)
+                messages.warning(request, "Please complete your patient profile before booking.")
+                return redirect('register_patient')
 
     else:
         form = BookingForm(initial={'time_slot': time_slots.first()})
@@ -323,3 +329,16 @@ def product_change_success(request, booking_id, new_product_id):
 def payment_cancel(request):
     return render(request, 'booking/payment_cancel.html')
 
+@login_required
+def create_patient_profile(request):
+    if request.method == 'POST':
+        form = PatientForm(request.POST)
+        if form.is_valid():
+            patient = form.save(commit=False)
+            patient.user = request.user
+            patient.save()
+            messages.success(request, "Your patient profile has been created.")
+            return redirect('create_booking')  # Redirect back to booking page
+    else:
+        form = PatientForm()
+    return render(request, 'patient/create_patient_profile.html', {'form': form})

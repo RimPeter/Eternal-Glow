@@ -30,6 +30,7 @@ def register_admin(request):
 def register_patient(request):
     if Patient.objects.filter(user=request.user).exists():
         # If the patient already exists, redirect to a different page or show a message
+        messages.info(request, "You already have a patient profile.")
         return redirect('my_details')
     if request.method == 'POST':
         form = PatientForm(request.POST)
@@ -38,6 +39,7 @@ def register_patient(request):
             patient.user = request.user  # Associate with the logged-in user
             patient.save()
             form.save_m2m()  # Save many-to-many relationships (medical conditions)
+            messages.success(request, "Your patient profile has been created.")
             return redirect('my_details')  # Redirect after successful registration
     else:
         form = PatientForm()
