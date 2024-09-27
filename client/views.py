@@ -8,6 +8,7 @@ from .models import Patient
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 
 
 
@@ -130,3 +131,6 @@ def delete_user(request, user_id):
     
     return render(request, 'client/confirm_delete_user.html', {'user': user})
 
+def robots_txt(request):
+    content = "User-agent: *\nDisallow: /admin/\n"
+    return HttpResponse(content, content_type="text/plain")
