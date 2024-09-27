@@ -7,9 +7,29 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      {% comment %} SEO Meta Tags {% endcomment %}
+      <meta name="description" content="Eternal Glow offers cutting-edge dermatology treatments including anti-aging, laser therapy, injectables, and skin care solutions tailored to your needs.">
+      <meta name="keywords" content="dermatology, skin care, anti-aging, laser therapy, injectables, wellness, blood tests, sports rehab, wellness clinic">
+      <meta name="robots" content="index, follow">
+
+      {% comment %} Open Graph (OG) Tags (Used by Facebook, LinkedIn, etc.) {% endcomment %}
+      <meta property="og:title" content="Eternal Glow - Advanced Dermatology Treatments">
+      <meta property="og:description" content="Discover our range of dermatology treatments including anti-aging, laser therapy, and personalized skin care solutions.">
+      <meta property="og:image" content="https://eternal-glow-b087f9869b00.herokuapp.com/static/images/MAINLOGO_2.png">
+      <meta property="og:url" content="https://eternal-glow-b087f9869b00.herokuapp.com/">
+      <meta property="og:type" content="website">
+
+      {% comment %} Twitter Card Tags {% endcomment %}
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="Eternal Glow - Advanced Dermatology Treatments">
+      <meta name="twitter:description" content="Explore our expert dermatology services, including anti-aging treatments, laser therapy, injectables, and personalized skin care.">
+      <meta name="twitter:image" content="https://eternal-glow-b087f9869b00.herokuapp.com/static/images/MAINLOGO_2.png">
+
+
     {% endblock meta %}{% block extrameta %}{% endblock extrameta %}
     
-    <title>{% block title %}Eternal Glow{% endblock %}</title>
+    <title>{% block title %}Eternal Glow - Advanced Dermatology Treatments{% endblock %}</title>
 
     {% block corecss %}
     <link
