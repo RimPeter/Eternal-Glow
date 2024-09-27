@@ -16,22 +16,15 @@ from decouple import config
 import dj_database_url
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY', default='your-default-secret-key')
 
-#SECRET_KEY = 'django-insecure-pz-#jin$bp=!4(c4j8no6=9lg(xr#))*rt3z&)83kvz%az6pf9'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-#DEBUG = True
 
 ALLOWED_HOSTS = [
     'eternal-glow-b087f9869b00.herokuapp.com',
@@ -41,7 +34,6 @@ ALLOWED_HOSTS = [
     ]
 
 
-# Application definition
 
 INSTALLED_APPS = [
     
@@ -51,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     
     'client',
     'treatment',
@@ -62,10 +55,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'crispy_forms',
     'crispy_bootstrap5',
-    #'django.contrib.sites',
 ]
 
-# In settings.py
 LOGIN_URL = '/client/login/'
 LOGIN_REDIRECT_URL = '/'
 
@@ -118,10 +109,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 
 AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
@@ -140,8 +128,6 @@ LOGIN_REDIRECT_URL = '/'
 WSGI_APPLICATION = 'DERMATOLOGY_PROJECT.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
 DATABASES = {
@@ -149,13 +135,6 @@ DATABASES = {
         default=config('DATABASE_URL', default='sqlite:///db.sqlite3')
     )
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 
 # Password validation
@@ -177,8 +156,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 APPEND_SLASH=False
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
+
 
 LANGUAGE_CODE = 'en-us'
 
