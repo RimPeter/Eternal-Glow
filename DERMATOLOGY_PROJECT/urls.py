@@ -28,7 +28,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('booking/', include('booking.urls')),
     path('robots.txt', client_views.robots_txt),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('mailchimp/', include('mailchimp.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

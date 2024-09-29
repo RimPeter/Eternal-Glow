@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'client',
     'treatment',
     'booking',
+    'mailchimp',
     
     'allauth',
     'allauth.account',
@@ -124,6 +125,10 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
+
+MAILCHIMP_API_KEY = config('MAILCHIMP_API_KEY')
+MAILCHIMP_LIST_ID = config('MAILCHIMP_LIST_ID')
+MAILCHIMP_DATA_CENTER = MAILCHIMP_API_KEY.split('-')[-1]
 
 WSGI_APPLICATION = 'DERMATOLOGY_PROJECT.wsgi.application'
 
