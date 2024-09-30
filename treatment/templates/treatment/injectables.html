@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Revitalize Your Skin with Botox</h2>
+            <p>Botox is one of the most popular cosmetic treatments for reducing wrinkles and fine lines. Our expertly administered Botox injections help relax facial muscles, giving you a smoother, more youthful appearance without invasive surgery.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'images\injectables\botox-placeholder.png' %}" class="img-fluid rounded" alt="Botox treatment placeholder">
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-md-6 order-md-2">
+            <h2>Replenish Volume with Dermal Fillers</h2>
+            <p>As we age, we lose volume in areas like the cheeks, lips, and around the eyes. Dermal fillers restore this volume, giving you a refreshed, plumper look. Our fillers are safe and effective, giving you natural-looking results.</p>
+        </div>
+        <div class="col-md-6 order-md-1">
+            <img src="{% static 'images\injectables\filler.png' %}" class="img-fluid rounded" alt="Dermal fillers placeholder">
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-md-6">
+            <h2>Restore Youth with PRP Treatments</h2>
+            <p>Platelet-Rich Plasma (PRP) therapy uses your own blood’s healing properties to stimulate skin rejuvenation. PRP treatments are a natural way to improve skin texture, reduce scars, and restore a youthful glow.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'images\injectables\prp.png' %}" class="img-fluid rounded" alt="PRP treatment placeholder">
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-md-6 order-md-2">
+            <h2>Smooth Away Wrinkles with Dysport</h2>
+            <p>Dysport is a fast-acting injectable designed to smooth moderate to severe frown lines between the eyebrows. Similar to Botox, Dysport works by temporarily relaxing specific muscles, giving you a naturally youthful appearance.</p>
+        </div>
+        <div class="col-md-6 order-md-1">
+            <img src="{% static 'images\injectables\dysport.png' %}" class="img-fluid rounded" alt="Dysport treatment placeholder">
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-md-6">
+            <h2>Lift and Tighten with Kybella</h2>
+            <p>Kybella is an innovative injectable that helps reduce submental fat, commonly known as a double chin. This non-surgical treatment destroys fat cells under the chin, creating a more defined, contoured jawline.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'images\injectables\kybella.png' %}" class="img-fluid rounded" alt="Kybella treatment placeholder">
+        </div>
+    </div>
+    <!-- Call to Action -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 text-center">
+            <h2>Ready to Rejuvenate Your Skin?</h2>
+            <p>Contact us today to schedule your personalized consultation. We’ll help you discover the right treatments to achieve your skincare goals. It’s time to embrace a younger, more confident you!</p>
+            <a href="{% url 'create_booking' %}" class="btn btn-primary btn-lg">Book Your Appointment</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

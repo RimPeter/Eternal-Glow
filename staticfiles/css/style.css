@@ -1,7 +1,13 @@
 body {
   font-family: 'Merriweather', serif;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
+.body-max-length {
+  max-width: 800px;
+  margin: 0 auto;
+}
 
 .navbar {
   color: #1a1b33;

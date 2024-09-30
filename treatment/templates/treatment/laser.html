@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <!-- Main Title -->
+  <h1 class="text-center mb-5">The Future of Skincare: Laser Treatments</h1>
+
+  <!-- Section 1 -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6">
+      <img src="{% static 'images\laser\laserCO2.png' %}" alt="Laser Treatment Image" class="img-fluid rounded">
+    </div>
+    <div class="col-md-6">
+      <h2>Achieve Flawless Skin with Laser Treatments</h2>
+      <p>
+        Our state-of-the-art laser treatments are designed to help you achieve glowing, smooth skin effortlessly. Whether you're looking to reduce wrinkles, eliminate unwanted hair, or treat acne scars, we offer a solution that is tailored to your needs. 
+      </p>
+      <p>
+        With minimal discomfort and downtime, our laser treatments provide quick and long-lasting results. Experience the confidence that comes with flawless skin today!
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6 order-md-2">
+      <img src="{% static 'images\laser\wrinkle.png' %}" alt="Laser Treatment Image" class="img-fluid rounded">
+    </div>
+    <div class="col-md-6 order-md-1">
+      <h2>Wrinkle Reduction & Skin Tightening</h2>
+      <p>
+        Say goodbye to fine lines and wrinkles with our advanced laser treatments. Our lasers stimulate collagen production, helping to tighten and rejuvenate your skin. This non-invasive procedure delivers noticeable improvements, leaving you looking refreshed and youthful.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6">
+      <img src="{% static 'images\laser\hair_remove.png' %}" alt="Laser Hair Removal" class="img-fluid rounded">
+    </div>
+    <div class="col-md-6">
+      <h2>Smooth and Hair-Free Skin with Laser Hair Removal</h2>
+      <p>
+        Tired of the hassle of shaving or waxing? Our laser hair removal treatments provide a long-term solution to unwanted hair. With precision targeting and safe technology, we can help you achieve smooth, hair-free skin on any part of your body.
+      </p>
+      <p>
+        Feel confident in your skin every day without the need for constant maintenance.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6 order-md-2">
+      <img src="{% static 'images\laser\scar.png' %}" alt="Acne Scar Treatment" class="img-fluid rounded">
+    </div>
+    <div class="col-md-6 order-md-1">
+      <h2>Acne Scar Removal for Clearer Skin</h2>
+      <p>
+        Acne scars can be a persistent reminder of past breakouts, but with laser treatment, you don't have to live with them any longer. Our specialized lasers target and break down scar tissue, leaving your skin smoother and clearer.
+      </p>
+      <p>
+        Reveal the beauty beneath your scars and restore your skin’s natural glow.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6">
+      <img src="{% static 'images\laser\pigment.png' %}" alt="Pigmentation Treatment" class="img-fluid rounded">
+    </div>
+    <div class="col-md-6">
+      <h2>Treat Uneven Pigmentation for an Even Complexion</h2>
+      <p>
+        Uneven skin tone and pigmentation issues can affect your confidence. Our laser treatments help reduce the appearance of dark spots, sun damage, and melasma. Achieve a smooth and even complexion with our safe and effective procedures.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6 order-md-2">
+      <img src="{% static 'images\laser\aftercare.png' %}" alt="Laser Treatment Aftercare" class="img-fluid rounded">
+    </div>
+    <div class="col-md-6 order-md-1">
+      <h2>The Importance of Aftercare</h2>
+      <p>
+        Proper aftercare is essential to achieving the best results from your laser treatments. Our experts will guide you through a personalized skincare routine to ensure your skin heals perfectly and stays radiant long after your treatment.
+      </p>
+      <p>
+        Invest in your skin with confidence—our team is here to support you every step of the way.
+      </p>
+    </div>
+  </div>
+  <!-- Call to Action -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 text-center">
+            <h2>Ready to Rejuvenate Your Skin?</h2>
+            <p>Contact us today to schedule your personalized consultation. We’ll help you discover the right treatments to achieve your skincare goals. It’s time to embrace a younger, more confident you!</p>
+            <a href="{% url 'create_booking' %}" class="btn btn-primary btn-lg">Book Your Appointment</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

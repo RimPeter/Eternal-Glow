@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">The Science of Skin Care: Unveiling Your Best Skin</h1>
+        
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <img src="{% static 'images\skin\radiant2.png' %}" alt="Radiant skin" class="img-fluid rounded">
+            </div>
+            <div class="col-md-8">
+                <h2>Discover Your Skin's Potential</h2>
+                <p>Welcome to a world where science meets beauty! At our dermatology clinic, we're passionate about helping you achieve the glowing, healthy skin you've always dreamed of. Our team of expert dermatologists combines cutting-edge research with personalized care to bring out the best in your skin. Ready to embark on a transformative skin care journey? Let's dive into the fascinating science behind our innovative treatments!</p>
+            </div>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h2>The Magic of Hydration</h2>
+                <p>Did you know that proper hydration is the foundation of healthy skin? Our advanced hydration therapies go beyond surface-level moisture. We use state-of-the-art techniques to infuse your skin with nourishing ingredients that penetrate deep into the dermis, promoting long-lasting hydration and a plump, youthful appearance. Say goodbye to dry, flaky skin and hello to a dewy, radiant complexion!</p>
+            </div>
+            <div class="col-md-4">
+                <img src="{% static 'images\skin\hydrated_skin.png' %}" alt="Hydrated skin" class="img-fluid rounded">
+            </div>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <img src="{% static 'images\skin\anti_aging.png' %}" alt="Anti-aging treatment" class="img-fluid rounded">
+            </div>
+            <div class="col-md-8">
+                <h2>Turning Back the Clock</h2>
+                <p>Aging is a natural process, but that doesn't mean we can't slow it down! Our anti-aging treatments harness the power of cutting-edge science to rejuvenate your skin at a cellular level. From peptide-rich serums that boost collagen production to non-invasive procedures that stimulate skin renewal, we offer a range of options to help you maintain a youthful glow. It's not about looking younger; it's about looking like the best version of yourself at any age!</p>
+            </div>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h2>The Acne Solution</h2>
+                <p>Acne doesn't have to be a lifelong struggle. Our dermatologists have unlocked the secrets to clear, blemish-free skin through years of research and clinical experience. We offer personalized acne treatments that target the root causes of breakouts, not just the symptoms. Using a combination of medical-grade skincare products and innovative procedures, we can help you achieve the clear, confident complexion you deserve. Say hello to selfie-ready skin!</p>
+            </div>
+            <div class="col-md-4">
+                <img src="{% static 'images\skin\clear_skin.png' %}" alt="Clear skin" class="img-fluid rounded">
+            </div>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <img src="{% static 'images\skin\skin_analysis.png' %}" alt="Skin analysis" class="img-fluid rounded">
+            </div>
+            <div class="col-md-8">
+                <h2>Your Unique Skin Profile</h2>
+                <p>At our clinic, we believe that no two skins are alike. That's why we begin every treatment plan with a comprehensive skin analysis using advanced imaging technology. This allows us to see beyond the surface and understand your skin's unique needs at a deeper level. By identifying your specific skin concerns and underlying factors, we can create a tailored treatment plan that delivers remarkable results. It's time to experience skincare that's as unique as you are!</p>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 text-center">
+            <h2>Ready to Rejuvenate Your Skin?</h2>
+            <p>Contact us today to schedule your personalized consultation. We’ll help you discover the right treatments to achieve your skincare goals. It’s time to embrace a younger, more confident you!</p>
+            <a href="{% url 'create_booking' %}" class="btn btn-primary btn-lg">Book Your Appointment</a>
+        </div>
+    </div>
+    </div>
+{% endblock %}

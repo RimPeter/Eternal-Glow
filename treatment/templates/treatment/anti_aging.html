@@ -1,10 +1,67 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-Home - My Dermatology Website
+Anti Aging
 {% endblock %}
+
 
 {% block content %}
-<h1>Welcome to anti aging</h1>
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Revitalize Your Skin: Unlock the Secrets of Anti-Aging</h1>
 
+    <!-- Section 1 -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-6">
+            <h2>You Deserve to Feel Confident in Your Skin</h2>
+            <p>Our expert dermatologists specialize in personalized skincare treatments that target visible signs of aging. Whether you want to reduce fine lines, improve skin texture, or regain a youthful glow, we have the perfect solution for you. Let’s work together to make your skin look and feel radiant!</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="{% static 'images\anti_aging\antiaging1.png' %}" alt="Anti-aging treatment" class="img-fluid rounded">
+        </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-6 text-center">
+            <img src="{% static 'images\anti_aging\antiaging2.png' %}" alt="Glowing skin" class="img-fluid rounded">
+        </div>
+        <div class="col-md-6">
+            <h2>Advanced Anti-Aging Technology</h2>
+            <p>We use the latest in dermatological technology to provide non-invasive, effective treatments. From laser therapy to microneedling, our procedures are designed to boost collagen production, smooth out wrinkles, and improve skin tone with minimal downtime.</p>
+        </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-6">
+            <h2>Customized Skincare Regimens</h2>
+            <p>No two skin types are alike, and neither are our treatments! Our team creates custom skincare regimens based on your unique skin type and concerns. Whether you’re battling sun damage, dark spots, or sagging skin, we’ll tailor a plan that works specifically for you.</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="{% static 'images\anti_aging\antiaging3.png' %}" alt="Skincare consultation" class="img-fluid rounded">
+        </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-6 text-center">
+            <img src="{% static 'images\anti_aging\antiaging4.png' %}" alt="Healthy skin" class="img-fluid rounded">
+        </div>
+        <div class="col-md-6">
+            <h2>Nourish Your Skin From Within</h2>
+            <p>Healthy skin starts from the inside out! Our experts provide guidance on nutrition and supplements that promote skin health. You’ll learn how to maintain your results long after your treatments with us, ensuring your skin stays youthful and glowing.</p>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 text-center">
+            <h2>Ready to Rejuvenate Your Skin?</h2>
+            <p>Contact us today to schedule your personalized consultation. We’ll help you discover the right treatments to achieve your skincare goals. It’s time to embrace a younger, more confident you!</p>
+            <a href="{% url 'create_booking' %}" class="btn btn-primary btn-lg">Book Your Appointment</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
