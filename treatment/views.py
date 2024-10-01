@@ -45,4 +45,23 @@ def laser(request):
 def skin(request):
     return render(request, 'treatment/skin.html')
 
+def category_detail(request, id):
+    category = get_object_or_404(Category, id=id)
+    products = Product.objects.filter(category=category)
+    context = {
+        'category': category,
+        'products': products,
+    }
+    return render(request, 'treatment/category_detail.html', context)
 
+def bodypart_detail(request, id):
+    bodypart = get_object_or_404(BodyPart, id=id)
+    products = Product.objects.filter(body_part=bodypart)
+    context = {
+        'bodypart': bodypart,
+        'products': products,
+    }
+    return render(request, 'treatment/bodypart_detail.html', context)
+
+def body(request):
+    return render(request, 'treatment/body.html')

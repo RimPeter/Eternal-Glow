@@ -8,6 +8,9 @@ urlpatterns = [
     path('injectables/', views.injectables, name='injectables'),
     path('laser/', views.laser, name='laser'),
     path('skin/', views.skin, name='skin'),
+    path('categories/<int:id>/', views.category_detail, name='category_detail'),
+    path('body-parts/<int:id>/', views.bodypart_detail, name='bodypart_detail'),
+    path('body/', views.body, name='body'),
 ]
 
     

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ bodypart.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ bodypart.name }}</h1>
+    {% if products %}
+        <ul>
+            {% for product in products %}
+                <li>
+                    <a href="{% url 'product_detail' product.id %}">{{ product.product_name }}</a>
+                    - £{{ product.price }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No products available for this body part.</p>
+    {% endif %}
+</div>
+{% endblock %}
