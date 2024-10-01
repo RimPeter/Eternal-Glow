@@ -36,7 +36,8 @@ SECRET_KEY = config('SECRET_KEY', default='your-default-secret-key')
 
 
 DEBUG = config('DEBUG', default=False, cast=bool)
-
+# DEBUG = False
+# print(f"DEBUG is set to {DEBUG}")
 
 ALLOWED_HOSTS = [
     'eternal-glow-b087f9869b00.herokuapp.com',

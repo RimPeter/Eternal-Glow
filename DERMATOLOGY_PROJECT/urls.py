@@ -1,7 +1,6 @@
 from django.contrib import admin
 from client import views as client_views
 from django.urls import path, include, re_path
-from django.urls.conf import include 
 from django.views.static import serve
 from django.conf import settings
 from django.conf.urls.static import static
@@ -13,6 +12,7 @@ from treatment.sitemaps import (
     StaticViewSitemap,
 )
 import os
+
 
 sitemaps = {
     'products': ProductSitemap,
@@ -31,6 +31,8 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('mailchimp/', include('mailchimp.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'DERMATOLOGY_PROJECT.views.custom_404_view'
 
 if settings.DEBUG:
     from django.conf.urls.static import static
@@ -51,3 +53,4 @@ if settings.DEBUG:
             'document_root': os.path.join(settings.BASE_DIR, 'static'),
         }),
     ]
+    
