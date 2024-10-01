@@ -71,7 +71,7 @@ def booking_failed(request):
 
 @login_required
 def booking_list(request):
-    bookings = Booking.objects.all().order_by('-booked_on') 
+    bookings = Booking.objects.filter(patient=request.user.patient).order_by('-booked_on') 
     context = {
         'bookings': bookings
     }
@@ -84,7 +84,14 @@ def create_checkout_session(request, booking_id):
     price_in_pennies = int(booking.product.price * 100)
     
     try:
-        success_url = request.build_absolute_uri(reverse('payment_success', args=[booking.id]))
+        # Build the path to the success view
+        path = reverse('payment_success', args=[booking.id])
+        # Construct the success URL without encoding the placeholder
+        success_url = f"{request.build_absolute_uri(path)}?session_id={{CHECKOUT_SESSION_ID}}"
+        
+        # Optionally, print the success_url for debugging
+        print('Success URL:', success_url)
+        
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[
@@ -105,9 +112,7 @@ def create_checkout_session(request, booking_id):
             metadata={"booking_id": booking.id, "user_id": request.user.id}
         )
         
-        booking.stripe_payment_intent_id = session.payment_intent
-        booking.save()
-        
+        # Do not set booking.stripe_payment_intent_id here
         return redirect(session.url)
     
     except Exception as e:
@@ -116,9 +121,21 @@ def create_checkout_session(request, booking_id):
 @login_required
 def payment_success(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
-    payment_intent_id = booking.stripe_payment_intent_id
+    session_id = request.GET.get('session_id')
+
+    if not session_id:
+        messages.error(request, "No session ID provided.")
+        return redirect('booking_list')
+
+    try:
+        session = stripe.checkout.Session.retrieve(session_id)
+        payment_intent_id = session.payment_intent
+    except stripe.error.StripeError as e:
+        messages.error(request, "Error retrieving session information.")
+        return redirect('booking_list')
+
     if not payment_intent_id:
-        messages.error(request, "No payment information found.")
+        messages.error(request, "No payment intent found in session.")
         return redirect('booking_list')
 
     try:
@@ -129,6 +146,7 @@ def payment_success(request, booking_id):
 
     if payment_intent.status == 'succeeded':
         booking.payment_status = True
+        booking.stripe_payment_intent_id = payment_intent_id
         booking.save()
         return render(request, 'booking/payment_success.html', {'booking': booking})
     else:
@@ -141,16 +159,17 @@ def stripe_webhook(request):
     payload = request.body
     sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
     event = None
-    
+
     try:
         event = stripe.Webhook.construct_event(
             payload, sig_header, endpoint_secret
         )
-    except ValueError as e:
-        # Invalid payload
+        logger.debug(f"Received Stripe event: {event['type']}")
+    except ValueError:
+        logger.error("Invalid payload")
         return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
+    except stripe.error.SignatureVerificationError:
+        logger.error("Invalid signature")
         return HttpResponse(status=400)
 
     # Handle the event
@@ -160,13 +179,15 @@ def stripe_webhook(request):
     elif event['type'] == 'payment_intent.payment_failed':
         payment_intent = event['data']['object']
         handle_payment_intent_failed(payment_intent)
-    # ... handle other event types
+    else:
+        logger.warning(f"Unhandled event type: {event['type']}")
 
     return HttpResponse(status=200)
 
 logger = logging.getLogger(__name__)
 def handle_payment_intent_succeeded(payment_intent):
     booking_id = payment_intent.metadata.get('booking_id')
+    logger.debug(f"Handling payment_intent.succeeded for booking_id: {booking_id}")
 
     if booking_id:
         try:
@@ -177,6 +198,8 @@ def handle_payment_intent_succeeded(payment_intent):
             logger.info(f"Payment succeeded for Booking ID {booking_id}.")
         except Booking.DoesNotExist:
             logger.error(f"Booking with ID {booking_id} does not exist.")
+    else:
+        logger.error("No booking_id found in PaymentIntent metadata.")
 
 def handle_payment_intent_failed(payment_intent):
     booking_id = payment_intent.metadata.get('booking_id')
