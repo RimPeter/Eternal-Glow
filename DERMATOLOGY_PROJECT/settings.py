@@ -18,7 +18,19 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console':{
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',  # Set to DEBUG for detailed logs
+    },
+}
 
 SECRET_KEY = config('SECRET_KEY', default='your-default-secret-key')
 
