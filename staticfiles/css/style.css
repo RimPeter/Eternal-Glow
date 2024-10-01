@@ -48,12 +48,31 @@ button:hover {
 }
 
 .main-logo {
-    display: block;
+    width: 100%;
+  height: auto;
+  /* max-width: 100%; */
+  object-fit: contain;
+    /* display: block;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    text-align: center; */
     border-radius: 10%;
     border: solid 5px #e6c2bf;
+}
+.welcome_text {
+  background-color: #ffc0cb; /* Light pink background */
+  color: #4b4b4b; /* Dark gray text */
+  padding: 20px;
+  border-radius: 15px; /* Rounded edges */
+  font-family: 'Arial', sans-serif;
+}
+
+
+.main-logo-div {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto; /* This centers the div if it's smaller than the viewport */
+  overflow: hidden; /* Prevents overflow content */
 }
 
 .home-title {
@@ -81,3 +100,41 @@ button:hover {
     color: #1a1b33;
 }
 
+#carouselExampleCaptions {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto; /* This will center the carousel if it's smaller than the viewport */
+  overflow: hidden; /* Prevents any overflow issues */
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures the image covers the container without being distorted */
+}
+
+/* Accordion Section in home.html*/
+.accordion {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto; /* Centers the accordion */
+  overflow: hidden; /* Ensures no overflow */
+}
+
+.accordion-body iframe {
+  width: 100%; /* Makes the iframe take the full width of the div */
+  height: auto; /* Keeps the aspect ratio */
+  aspect-ratio: 16/9; /* Sets the aspect ratio of the iframe */
+}
+
+/* Footer styling */
+.footer {
+  background-color: #f8f9fa;
+  padding: 10px;
+  text-align: center;
+}
+
+.facebook-icon {
+  width: 30px;
+  height: 30px;
+}
