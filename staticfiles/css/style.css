@@ -2,13 +2,17 @@ body {
   font-family: 'Merriweather', serif;
   max-width: 800px;
   margin: 0 auto;
+  background-color: #f5e7e5;
 }
 
 #navbar {
   background-color: #e6c2bf !important; 
 }
 
-
+.title1 {
+  font-size: 2.5rem; /* Adjust the size as needed */
+  text-align: center;
+}
 
 form {
   background-color: #f9f9f9;
@@ -126,6 +130,20 @@ button:hover {
   height: auto; /* Keeps the aspect ratio */
   aspect-ratio: 16/9; /* Sets the aspect ratio of the iframe */
 }
+
+.product-info {
+  display: flex;
+  justify-content: space-between; /* Aligns the elements to the left and right */
+  margin-bottom: 10px; /* Adds space between the elements */
+  font-size: 0.8em; /* Adjust the font size as needed */
+}
+
+h6.product-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Ensures the flex container takes up full width */
+}
+
 
 /* Footer styling */
 .footer {
