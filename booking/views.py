@@ -71,12 +71,16 @@ def booking_failed(request):
 
 @login_required
 def booking_list(request):
-    bookings = Booking.objects.filter(patient=request.user.patient).order_by('-booked_on') 
-    context = {
-        'bookings': bookings
-    }
-    return render(request, 'booking/booking_list.html', context) 
-
+    if hasattr(request.user, 'patient'):
+        bookings = Booking.objects.filter(patient=request.user.patient).order_by('-booked_on') 
+        context = {
+            'bookings': bookings
+        }
+        return render(request, 'booking/booking_list.html', context)
+    else:
+        messages.warning(request, "Please complete your patient profile before accessing your bookings.")
+        return redirect('register_patient')
+    
 @login_required
 def create_checkout_session(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
@@ -212,6 +216,7 @@ def handle_payment_intent_failed(payment_intent):
             logger.info(f"Payment failed for Booking ID {booking_id}.")
         except Booking.DoesNotExist:
             logger.error(f"Booking with ID {booking_id} does not exist.")
+
 def handle_checkout_session(session):
     return None
 
@@ -311,9 +316,17 @@ def change_booking_product(request, booking_id):
 
             elif price_difference > 0:
                 # Additional payment required
-                success_url = request.build_absolute_uri(
-                    reverse('product_change_success', args=[booking.id, new_product.id]) + '?session_id={CHECKOUT_SESSION_ID}'
-                )
+
+                # Step 1: Build the base URL
+                path = reverse('product_change_success', args=[booking.id, new_product.id])
+                base_url = request.build_absolute_uri(path)
+
+                # Step 2: Append the session_id parameter without encoding braces
+                success_url = f"{base_url}?session_id={{CHECKOUT_SESSION_ID}}"
+
+                # Optionally, print the success_url for debugging
+                print('Success URL:', success_url)
+
                 try:
                     session = stripe.checkout.Session.create(
                         payment_method_types=['card'],
@@ -360,6 +373,9 @@ def change_booking_product(request, booking_id):
     else:
         return redirect('manage_booking', booking_id=booking.id)
 
+from django.contrib import messages
+import stripe
+
 @login_required
 def cancel_booking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id, patient=request.user.patient)
@@ -371,11 +387,31 @@ def cancel_booking(request, booking_id):
 
     if request.method == 'POST':
         if booking.payment_status:
-            pass
+            # Process a refund
+            try:
+                refund = stripe.Refund.create(
+                    payment_intent=booking.stripe_payment_intent_id,
+                    amount=int(booking.product.price * 100),  # Amount in cents
+                )
+                # Optionally, store refund details in your database
+                # booking.refund_id = refund.id
+                # booking.save()
+                
+                # Add a message with the 'refund' tag
+                messages.success(
+                    request,
+                    "Booking canceled successfully. A refund will be processed within the next six days.",
+                    extra_tags='refund'
+                )
+            except Exception as e:
+                messages.error(request, "There was an error processing your refund. Please contact support.")
+                return redirect('manage_booking', booking_id=booking.id)
+        else:
+            # Booking was unpaid
+            messages.success(request, "Booking canceled successfully.")
 
+        # Delete the booking after processing
         booking.delete()
-
-        messages.success(request, "Booking canceled successfully.")
         return redirect('booking_list')
 
     else:
@@ -392,8 +428,12 @@ def product_change_success(request, booking_id, new_product_id):
         messages.error(request, "Unable to verify payment.")
         return redirect('manage_booking', booking_id=booking.id)
 
-    # Retrieve the Checkout Session from Stripe
-    session = stripe.checkout.Session.retrieve(session_id)
+    try:
+        # Retrieve the Checkout Session from Stripe
+        session = stripe.checkout.Session.retrieve(session_id)
+    except stripe.error.StripeError as e:
+        messages.error(request, "Error retrieving session information.")
+        return redirect('manage_booking', booking_id=booking.id)
 
     # Verify that the payment was successful
     if session.payment_status == 'paid':
@@ -406,7 +446,7 @@ def product_change_success(request, booking_id, new_product_id):
     else:
         messages.error(request, "Payment was not successful.")
         return redirect('manage_booking', booking_id=booking.id)
-    
+   
 def payment_cancel(request):
     return render(request, 'booking/payment_cancel.html')
 

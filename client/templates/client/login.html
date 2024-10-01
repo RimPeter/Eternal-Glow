@@ -5,8 +5,8 @@ Home - My Dermatology Website
 {%endblock %} 
 
 {% block content %}
-<h1>Welcome to login</h1>
-<h2>Login</h2>
+<h1 class="title1">Welcome to login</h1>
+<h2 class="title1">Login</h2>
 <form method="post">
   {% csrf_token %} {{ form.as_p }}
   <button type="submit">Login</button>

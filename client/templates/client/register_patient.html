@@ -3,8 +3,8 @@
 
 
 {% block content %}
-<div class="container">
-    <h2>Register as a Patient</h2>
+<div class="container welcome_text">
+    <h2 class="title1">Please, register as a Patient!</h2>
     <form method="POST">
         {% csrf_token %}
         {{ form|crispy }}

@@ -30,26 +30,6 @@ def product_detail(request, id):
     product = get_object_or_404(Product, id=id)
     return render(request, 'treatment/product_detail.html', {'product': product})
 
-def all_products(request):
-    products = Product.objects.all()
-    return render(request, 'treatment/all_products.html', {'products': products})
-
-def all_categories(request):
-    categories = Category.objects.all()
-    return render(request, 'treatment/all_categories.html', {'categories': categories})
-
-def category_detail(request, id):
-    category = get_object_or_404(Category, id=id)
-    return render(request, 'treatment/category_detail.html', {'category': category})
-
-def all_bodyparts(request):
-    bodyparts = BodyPart.objects.all()
-    return render(request, 'treatment/all_bodyparts.html', {'bodyparts': bodyparts})
-
-def bodypart_detail(request, id):
-    bodypart = get_object_or_404(BodyPart, id=id)
-    return render(request, 'treatment/bodypart_detail.html', {'bodypart': bodypart})
-
 def anti_aging(request):
     return render(request, 'treatment/anti_aging.html')
 

@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Create Booking{% endblock %}
 
 {% block content %}
-<h1>Create Booking</h1>
+<h1 class="title1">Create Booking</h1>
 <div class="main-logo-div">
   <form method="POST" action="" class="welcome_text">
   {% csrf_token %}

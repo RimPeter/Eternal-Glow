@@ -5,9 +5,9 @@ Home - My Dermatology Website
 {%endblock %} 
 
 {% block content %}
-<h1>Manage Your Booking</h1>
+<h1 class="title1">Manage Your Booking</h1>
 {% if bookings %}
-<div class="container">
+<div class="container welcome_text">
   <div class="row d-flex flex-wrap justify-content-start">
     {% for booking in bookings %}
     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex">
@@ -37,7 +37,10 @@ Home - My Dermatology Website
 </div>
 
 {% else %}
-<p>No bookings are available.</p>
+<div class="welcome_text">
+  <p>No bookings are available.</p>
+</div>
+
 {% endif %} 
             
 {% endblock %}

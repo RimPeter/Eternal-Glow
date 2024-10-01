@@ -203,14 +203,70 @@
       {% block content %} {% endblock %}
 
     </main>
-
+{% if messages %}
+    {% for message in messages %}
+        {% if 'refund' in message.tags %}
+            <!-- Modal -->
+            <div class="modal fade" id="refundModal" tabindex="-1" aria-labelledby="refundModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="refundModalLabel">Booking Canceled</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{ message }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- JavaScript to trigger modal -->
+            <script>
+                var myModal = new bootstrap.Modal(document.getElementById('refundModal'), {});
+                document.addEventListener("DOMContentLoaded", function(){
+                    myModal.show();
+                });
+            </script>
+        {% else %}
+            <!-- Regular Alert Messages -->
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 <!-- Footer -->
-<footer class="footer">
-  <p>&copy; 2024 Your Website. All Rights Reserved.</p>
+ <br>
+ <div class="welcome_text">
+  <footer class="footer">
+  <p>&copy; 2024 ETERNAL GLOW. All Rights Reserved.</p>
   <a href="https://www.facebook.com/profile.php?id=61566332712590" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" style="width: 30px; height: 30px;">
   </a>
 </footer>
+ </div>
+
+<script>
+  {% comment %} fade out alerts after 6 seconds {% endcomment %}
+    document.addEventListener("DOMContentLoaded", function() {
+        var alerts = document.querySelectorAll('.container .alert');
+
+        alerts.forEach(function(alert) {
+            setTimeout(function() {
+                alert.style.transition = "opacity 0.5s ease";
+                alert.style.opacity = "0";
+                // Remove the alert from the DOM after the transition
+                setTimeout(function() {
+                    alert.parentNode.removeChild(alert);
+                }, 500); // Match this timing with the CSS transition duration
+            }, 6000);
+        });
+    });
+</script>
 
     {% block postloadjs %}{% endblock postloadjs %}
   </body>
