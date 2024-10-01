@@ -5,6 +5,7 @@ Home - My Dermatology Website
 {%endblock %} 
 
 {% block content %}
+<div class="welcome_text">
     <h1>Subscribe to Our Newsletter</h1>
 
     {% if messages %}
@@ -20,4 +21,6 @@ Home - My Dermatology Website
         {{ form.as_p }}
         <button type="submit">Subscribe</button>
     </form>
+</div>
+    
 {% endblock %}
