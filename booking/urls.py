@@ -11,7 +11,7 @@ urlpatterns = [
     path('create-checkout-session/<int:booking_id>/', views.create_checkout_session, name='create_checkout_session'),
     path('payment-success/<int:booking_id>', views.payment_success, name='payment_success'),
     path('payment-cancel/', views.payment_cancel, name='payment_cancel'),
-    path('stripe-webhook/', views.stripe_webhook, name='stripe_webhook'),
+    path('stripe/webhook/', views.stripe_webhook, name='stripe_webhook'),
     
     #manage booking:
     path('manage-booking/<int:booking_id>/', views.manage_booking, name='manage_booking'),

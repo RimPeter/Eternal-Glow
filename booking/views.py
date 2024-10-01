@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import BookingForm
 from .models import Product, TimeSlot, Booking
 from django.urls import reverse
-
+from django.http import HttpResponse
+from django.conf import settings
 import stripe
 from .models import Booking
 from django.views.decorators.csrf import csrf_exempt
@@ -17,9 +18,10 @@ from client.forms import PatientForm
 from django.contrib import messages
 import datetime 
 import os
+import logging
 
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
-
+endpoint_secret = os.environ.get('STRIPE_WEBHOOK_SECRET')
 
 @login_required
 def create_booking(request):
@@ -75,8 +77,6 @@ def booking_list(request):
     }
     return render(request, 'booking/booking_list.html', context) 
 
-#stripe.api_key = stripe_keys.STRIPE_SECRET_KEY
-
 @login_required
 def create_checkout_session(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
@@ -116,7 +116,16 @@ def create_checkout_session(request, booking_id):
 @login_required
 def payment_success(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
-    payment_intent = stripe.PaymentIntent.retrieve(booking.stripe_payment_intent_id)
+    payment_intent_id = booking.stripe_payment_intent_id
+    if not payment_intent_id:
+        messages.error(request, "No payment information found.")
+        return redirect('booking_list')
+
+    try:
+        payment_intent = stripe.PaymentIntent.retrieve(payment_intent_id)
+    except stripe.error.StripeError as e:
+        messages.error(request, "Error retrieving payment information.")
+        return redirect('booking_list')
 
     if payment_intent.status == 'succeeded':
         booking.payment_status = True
@@ -129,8 +138,57 @@ def payment_success(request, booking_id):
 @csrf_exempt
 @require_POST
 def stripe_webhook(request):
-    return None
+    payload = request.body
+    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
+    event = None
+    
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return HttpResponse(status=400)
 
+    # Handle the event
+    if event['type'] == 'payment_intent.succeeded':
+        payment_intent = event['data']['object']
+        handle_payment_intent_succeeded(payment_intent)
+    elif event['type'] == 'payment_intent.payment_failed':
+        payment_intent = event['data']['object']
+        handle_payment_intent_failed(payment_intent)
+    # ... handle other event types
+
+    return HttpResponse(status=200)
+
+logger = logging.getLogger(__name__)
+def handle_payment_intent_succeeded(payment_intent):
+    booking_id = payment_intent.metadata.get('booking_id')
+
+    if booking_id:
+        try:
+            booking = Booking.objects.get(id=booking_id)
+            booking.payment_status = True
+            booking.stripe_payment_intent_id = payment_intent.id
+            booking.save()
+            logger.info(f"Payment succeeded for Booking ID {booking_id}.")
+        except Booking.DoesNotExist:
+            logger.error(f"Booking with ID {booking_id} does not exist.")
+
+def handle_payment_intent_failed(payment_intent):
+    booking_id = payment_intent.metadata.get('booking_id')
+
+    if booking_id:
+        try:
+            booking = Booking.objects.get(id=booking_id)
+            booking.payment_status = False
+            booking.save()
+            logger.info(f"Payment failed for Booking ID {booking_id}.")
+        except Booking.DoesNotExist:
+            logger.error(f"Booking with ID {booking_id} does not exist.")
 def handle_checkout_session(session):
     return None
 
