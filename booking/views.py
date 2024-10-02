@@ -63,8 +63,7 @@ def create_booking(request):
         'time_slots': time_slots,
         'selected_product': selected_product
     })
-
-    
+   
 @login_required
 def booking_failed(request):
     return render(request, 'booking/booking_failed.html', {'message': "You already have a booking on this date."})
@@ -367,9 +366,6 @@ def change_booking_product(request, booking_id):
                     return redirect('manage_booking', booking_id=booking.id)
     else:
         return redirect('manage_booking', booking_id=booking.id)
-
-from django.contrib import messages
-import stripe
 
 @login_required
 def cancel_booking(request, booking_id):
