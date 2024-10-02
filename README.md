@@ -162,6 +162,200 @@ Open your web browser and navigate to:
 Copy code
 http://127.0.0.1:8000/
 ```
+
+Deployment
+Deploying Eternal Glow to a production environment involves several steps to ensure the application runs smoothly, securely, and efficiently. Below is a comprehensive guide to deploying the application, including setting up the database and configuring the server.
+
+Preparing for Deployment
+Choose a Hosting Provider
+
+Select a reliable hosting provider that supports Django applications. Popular choices include:
+
+Heroku
+AWS (Amazon Web Services)
+DigitalOcean
+PythonAnywhere
+Azure
+Set Up a Production Environment
+
+Create a Virtual Environment:
+
+```bash
+Copy code
+python3 -m venv venv
+source venv/bin/activate
+```
+Install Dependencies:
+
+```bash
+Copy code
+pip install -r requirements.txt
+```
+Set DEBUG to False:
+
+In your .env file, ensure that:
+
+```dotenv
+Copy code
+DEBUG=False
+```
+Configure Allowed Hosts:
+
+Add your domain or server IP to the ALLOWED_HOSTS in settings.py:
+
+```python
+Copy code
+ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com']
+```
+Setting Up the Database
+For production, it's recommended to use a more robust database system like PostgreSQL instead of SQLite.
+
+Install PostgreSQL
+
+On Ubuntu:
+
+```bash
+Copy code
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+```
+On macOS (using Homebrew):
+
+```bash
+Copy code
+brew install postgresql
+brew services start postgresql
+```
+Create a Database and User
+
+```bash
+Copy code
+sudo -u postgres psql
+```
+Inside the PostgreSQL shell:
+
+```sql
+Copy code
+CREATE DATABASE eternal_glow_db;
+CREATE USER eternal_user WITH PASSWORD 'securepassword';
+ALTER ROLE eternal_user SET client_encoding TO 'utf8';
+ALTER ROLE eternal_user SET default_transaction_isolation TO 'read committed';
+ALTER ROLE eternal_user SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE eternal_glow_db TO eternal_user;
+\q
+```
+Configure DATABASE_URL
+
+Update the .env file with the PostgreSQL database URL:
+
+```dotenv
+Copy code
+DATABASE_URL=postgres://eternal_user:securepassword@localhost:5432/eternal_glow_db
+```
+Apply Migrations
+
+```bash
+Copy code
+python manage.py migrate
+```
+Configuring the Server
+Install and Configure Gunicorn
+
+Gunicorn is a Python WSGI HTTP Server for UNIX. Install it using pip:
+
+```bash
+Copy code
+pip install gunicorn
+```
+Test Gunicorn by running:
+
+```bash
+Copy code
+gunicorn eternal_glow.wsgi
+```
+Set Up a Reverse Proxy with Nginx
+
+Deploying the Application
+Collect Static Files
+
+```bash
+Copy code
+python manage.py collectstatic
+```
+Restart Services
+
+```bash
+Copy code
+sudo systemctl restart gunicorn
+sudo systemctl restart nginx
+```
+Secure the Application with SSL
+
+It's crucial to secure your application with SSL. You can obtain a free SSL certificate from Let's Encrypt:
+
+```bash
+Copy code
+sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
+```
+Follow the prompts to complete the SSL setup.
+
+
+Activate the Virtual Environment
+
+```bash
+Copy code
+source venv/bin/activate
+```
+
+
+
+jobs:
+  build:
+```
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_USER: eternal_user
+          POSTGRES_PASSWORD: securepassword
+          POSTGRES_DB: eternal_glow_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run migrations
+      run: |
+        python manage.py migrate
+    - name: Run tests
+      run: |
+        python manage.py test
+```
+Commit and Push:
+
+```bash
+Copy code
+git add .
+git commit -m "Add workflow"
+git push origin main
+```
+
 ## Usage
 
 ### Basic Usage
