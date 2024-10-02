@@ -478,4 +478,93 @@ By following our Facebook Business Page, you'll be the first to know about new s
 
 - **[Font Awesome](https://fontawesome.com/)**: Utilized for adding scalable vector icons that enhance the user interface and improve navigation.
 
+##Manual Testing
+In addition to automated tests, thorough manual testing has been conducted to ensure that all views function correctly and provide a seamless user experience. The following Django views have been meticulously tested to verify their functionality, usability, and reliability:
 
+Authentication and User Management
+###register_admin
+
+Purpose: Handles the registration of new admin users.
+Testing: Verified that admin accounts are created securely, with proper validation and access permissions.
+###register_patient
+
+Purpose: Manages patient registration and profile creation.
+Testing: Ensured that patients can register successfully, with all required fields validated and profiles correctly associated with user accounts.
+###login
+
+Purpose: Facilitates user authentication.
+Testing: Confirmed that users can log in with valid credentials and receive appropriate error messages for invalid attempts.
+###logout
+
+Purpose: Handles user logout functionality.
+Testing: Verified that users can securely log out, terminating their sessions without errors.
+###change_password
+
+Purpose: Allows users to update their passwords.
+Testing: Ensured that password changes are processed correctly, with validations for old and new passwords.
+###delete_user
+
+Purpose: Enables the deletion of user accounts.
+Testing: Confirmed that user accounts are deleted securely, with appropriate confirmations and error handling.
+###create_patient_profile
+
+Purpose: Facilitates the creation of detailed patient profiles.
+Testing: Verified that patient profiles are created with all necessary information and correctly linked to user accounts.
+Booking and Appointment Management
+###create_booking
+
+Purpose: Allows patients to create new bookings for skincare services.
+Testing: Tested booking creation with various inputs, ensuring duplicate bookings are prevented and bookings are correctly linked to patients.
+###booking_failed
+
+Purpose: Displays an error message when a booking attempt fails.
+Testing: Verified that appropriate error messages are shown for duplicate bookings and other failure scenarios.
+###booking_list
+
+Purpose: Displays a list of all bookings associated with a patient.
+Testing: Ensured that bookings are correctly listed, sorted, and accessible only to the respective patient.
+###manage_booking
+
+Purpose: Provides functionalities to manage existing bookings, including updates and cancellations.
+Testing: Tested updating booking details, changing dates and products, and canceling bookings with and without payments.
+###change_booking_date
+
+Purpose: Allows patients to change the date and time of their bookings.
+Testing: Verified date validations, conflict checks, and successful updates of booking dates and time slots.
+###change_booking_product
+
+Purpose: Enables patients to change the service/product associated with their bookings.
+Testing: Tested product changes with scenarios involving price differences, additional payments, and refunds.
+###cancel_booking
+
+Purpose: Facilitates the cancellation of bookings.
+Testing: Ensured that cancellations process refunds when applicable and delete bookings securely.
+###payment_cancel
+
+Purpose: Handles scenarios where a payment is canceled.
+Testing: Verified that users are appropriately notified and that the application state reflects the canceled payment.
+Payment Processing
+###create_checkout_session
+
+Purpose: Initiates the Stripe checkout session for payments.
+Testing: Confirmed that checkout sessions are created with correct payment details and that users are redirected appropriately.
+###payment_success
+
+Purpose: Processes successful payment confirmations.
+Testing: Ensured that payment statuses are updated correctly and that users receive confirmation messages.
+###stripe_webhook
+
+Purpose: Handles incoming Stripe webhook events.
+Testing: Verified that webhook events are processed accurately, updating booking statuses based on payment outcomes.
+###handle_payment_intent_succeeded
+
+Purpose: Updates bookings upon successful payment intents.
+Testing: Confirmed that bookings are marked as paid and associated with the correct payment intents.
+###handle_payment_intent_failed
+
+Purpose: Manages failed payment intents.
+Testing: Ensured that failed payments are handled gracefully, notifying users and maintaining data integrity.
+###product_change_success
+
+Purpose: Finalizes product changes after additional payments.
+Testing: Verified that product updates are processed correctly upon successful additional payments.
