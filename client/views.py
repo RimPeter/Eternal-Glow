@@ -57,7 +57,6 @@ def my_details(request):
     patient_qs = Patient.objects.filter(user=request.user)
 
     if not patient_qs.exists():
-        # If no patient is found, handle accordingly (redirect or show message)
         return redirect('register_patient')
 
     # If there are multiple patient records, just get the first one

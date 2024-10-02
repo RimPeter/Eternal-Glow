@@ -36,8 +36,7 @@ SECRET_KEY = config('SECRET_KEY', default='your-default-secret-key')
 
 
 DEBUG = config('DEBUG', default=False, cast=bool)
-# DEBUG = False
-# print(f"DEBUG is set to {DEBUG}")
+
 
 ALLOWED_HOSTS = [
     'eternal-glow-b087f9869b00.herokuapp.com',
@@ -146,17 +145,12 @@ MAILCHIMP_DATA_CENTER = MAILCHIMP_API_KEY.split('-')[-1]
 WSGI_APPLICATION = 'DERMATOLOGY_PROJECT.wsgi.application'
 
 
-
-
 DATABASES = {
     'default': dj_database_url.config(
         default=config('DATABASE_URL', default='sqlite:///db.sqlite3')
     )
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -185,9 +179,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
@@ -195,8 +186,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

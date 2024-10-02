@@ -56,7 +56,6 @@ class ChangePasswordForm(forms.Form):
         required=True
     )
 
-    # Optional: Add validation for the new passwords (e.g., passwords must match)
     def clean(self):
         cleaned_data = super().clean()
         new_password1 = cleaned_data.get("new_password1")

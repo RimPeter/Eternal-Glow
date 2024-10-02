@@ -93,7 +93,6 @@ def create_checkout_session(request, booking_id):
         # Construct the success URL without encoding the placeholder
         success_url = f"{request.build_absolute_uri(path)}?session_id={{CHECKOUT_SESSION_ID}}"
         
-        # Optionally, print the success_url for debugging
         print('Success URL:', success_url)
         
         session = stripe.checkout.Session.create(
@@ -116,7 +115,6 @@ def create_checkout_session(request, booking_id):
             metadata={"booking_id": booking.id, "user_id": request.user.id}
         )
         
-        # Do not set booking.stripe_payment_intent_id here
         return redirect(session.url)
     
     except Exception as e:
@@ -308,7 +306,6 @@ def change_booking_product(request, booking_id):
         else:
             # Booking is paid
             if price_difference == 0:
-                # No price difference, simply update the product
                 booking.product = new_product
                 booking.save()
                 messages.success(request, "Product changed successfully.")
@@ -316,7 +313,6 @@ def change_booking_product(request, booking_id):
 
             elif price_difference > 0:
                 # Additional payment required
-
                 # Step 1: Build the base URL
                 path = reverse('product_change_success', args=[booking.id, new_product.id])
                 base_url = request.build_absolute_uri(path)
@@ -324,7 +320,6 @@ def change_booking_product(request, booking_id):
                 # Step 2: Append the session_id parameter without encoding braces
                 success_url = f"{base_url}?session_id={{CHECKOUT_SESSION_ID}}"
 
-                # Optionally, print the success_url for debugging
                 print('Success URL:', success_url)
 
                 try:
@@ -393,9 +388,6 @@ def cancel_booking(request, booking_id):
                     payment_intent=booking.stripe_payment_intent_id,
                     amount=int(booking.product.price * 100),  # Amount in cents
                 )
-                # Optionally, store refund details in your database
-                # booking.refund_id = refund.id
-                # booking.save()
                 
                 # Add a message with the 'refund' tag
                 messages.success(

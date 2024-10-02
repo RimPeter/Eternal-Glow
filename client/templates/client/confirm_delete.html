@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
-
+{% block title %}
+    Confirm Profile Deletion
+{% endblock title %}
 {% block content %}
 <div class="container welcome_text">
-    <h2 class="title1">Confirm Delete</h2>
+    <h2 class="title1">Confirm Delete Profile</h2>
     <p>Are you sure you want to delete your profile data?</p>
     <form method="POST">
         {% csrf_token %}
