@@ -162,3 +162,76 @@ Open your web browser and navigate to:
 Copy code
 http://127.0.0.1:8000/
 ```
+## Usage
+
+### Basic Usage
+
+**Eternal Glow** provides a user-friendly interface for clients to manage their skincare needs effortlessly. Here’s how you can navigate and utilize the platform:
+
+1. **Register an Account**
+   - Navigate to the **Register** page.
+   - Fill in the required details to create a new account.
+   
+2. **Login**
+   - Go to the **Login** page.
+   - Enter your credentials to access your personalized dashboard.
+   
+3. **Browse Services**
+   - Explore the range of skincare treatments and services offered.
+   
+4. **Create a Booking**
+   - Select your desired service and choose a convenient time slot.
+   - Confirm your booking details to secure your appointment.
+   
+5. **Manage Bookings**
+   - View your upcoming appointments in the **Booking List**.
+   - Update or cancel your bookings as needed through the **Manage Booking** section.
+
+### Screenshots/Demos
+
+Visual representations can help you better understand the workflow and features of **Eternal Glow**. Below are screenshots showcasing various parts of the application:
+
+- **Home Page**
+
+  ![Home Page](static/images/readme/home.png)
+
+  *The welcoming home page provides an overview of our services and easy navigation options.*
+
+- **Services Page**
+
+  ![Services](static/images/readme/treatments.png)
+
+  *Browse through our comprehensive list of skincare treatments tailored to your needs.*
+
+- **Registration Page**
+
+  ![Register Page](static/images/readme/register-page.png)
+
+  *Create a new account by providing your personal information.*
+
+- **Login Page**
+
+  ![Login Page](static/images/readme/login-page.png)
+
+  *Access your account securely using your registered credentials.*
+
+- **Create Booking**
+
+  ![Create Booking](static/images/readme/create-booking.png)
+
+  *Select a service and schedule your appointment with ease.*
+
+- **Booking List**
+
+  ![Booking List](static/images/readme/booking-list.png)
+
+  *View all your upcoming and past bookings in one place.*
+
+- **Manage Booking**
+
+  ![Manage Booking](static/images/readme/manage-booking.png)
+
+  *Update or cancel your appointments directly from the management interface.*
+
+
+
