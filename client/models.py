@@ -13,7 +13,11 @@ class Patient(models.Model):
     first_name = models.CharField(max_length=50)
     middle_name = models.CharField(max_length=50, blank=True, null=True)
     last_name = models.CharField(max_length=50)
-    date_of_birth = models.DateField(null=True, blank=True)
+    date_of_birth = models.DateField(
+        verbose_name="Date of Birth",
+        null=True,  
+        blank=False  
+    )    
     GENDER_CHOICES = [
         ('M', 'Male'),
         ('F', 'Female'),
