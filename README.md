@@ -233,5 +233,28 @@ Visual representations can help you better understand the workflow and features 
 
   *Update or cancel your appointments directly from the management interface.*
 
+## Facebook Business Page
+
+Connect with **Eternal Glow** on our official [Facebook Business Page](https://www.facebook.com/eternalglowclinic) to stay updated with the latest news, skincare tips, and exclusive offers.
+
+![Eternal Glow on Facebook](static/images/readme/facebook.png)
+
+### Why Follow Us on Facebook?
+
+- **Stay Informed**: Receive real-time updates about our services, promotions, and events.
+- **Expert Insights**: Access valuable skincare advice and tips from our experienced dermatologists.
+- **Community Engagement**: Join a community of like-minded individuals who are passionate about skincare and wellness.
+- **Exclusive Content**: Enjoy special content, including tutorials, behind-the-scenes looks, and client testimonials.
+- **Interactive Support**: Get your questions answered and receive personalized recommendations directly through our Facebook page.
+
+### How to Connect
+
+1. **Visit Our Page**: Click on the [Eternal Glow Facebook Page](https://www.facebook.com/eternalglowclinic) link.
+2. **Like and Follow**: Click the "Like" and "Follow" buttons to start receiving updates.
+3. **Engage with Us**: Like, comment, and share our posts to engage with our community and stay involved.
+
+By following our Facebook Business Page, you'll be the first to know about new services, special discounts, and important announcements. Join our online community today and take a step towards achieving radiant and healthy skin with **Eternal Glow**!
+
+---
 
 
