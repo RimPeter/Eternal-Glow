@@ -479,7 +479,7 @@ By following our Facebook Business Page, you'll be the first to know about new s
 - **[Font Awesome](https://fontawesome.com/)**: Utilized for adding scalable vector icons that enhance the user interface and improve navigation.
 
 ## Manual Testing
-In addition to automated tests, thorough manual testing has been conducted to ensure that all views function correctly and provide a seamless user experience. The following Django views have been meticulously tested to verify their functionality, usability, and reliability:
+In lack of automated tests, thorough manual testing has been conducted to ensure that all views function correctly and provide a seamless user experience. The following Django views have been tested to verify their functionality, usability, and reliability:
 
 Authentication and User Management
 
