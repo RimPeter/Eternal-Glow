@@ -258,3 +258,39 @@ By following our Facebook Business Page, you'll be the first to know about new s
 ---
 
 
+## Resources and Acknowledgments
+
+Creating **Eternal Glow** has been a collaborative effort, leveraging a variety of tools and inspirations to deliver a seamless and visually appealing dermatology clinic website. We would like to acknowledge the following resources that played a pivotal role in the development of this project:
+
+### Tools and Technologies
+
+- **[Django](https://www.djangoproject.com/)**: The primary web framework used to build the backend of **Eternal Glow**, providing a robust and scalable foundation for our application.
+
+- **[Google](https://www.google.com/)**: Utilized extensively for research, troubleshooting, and accessing a wealth of tutorials and documentation that facilitated efficient problem-solving throughout the development process.
+
+- **[GPT-4 by OpenAI](https://openai.com/product/gpt-4)**: Assisted in generating code snippets, improving documentation, and enhancing the overall quality of written content within the project.
+
+### Design and Aesthetics
+
+- **[Image Color Picker](https://imagecolorpicker.com/)**: Employed to select and harmonize the color palette, ensuring that the website's design is both visually appealing and consistent with our brand identity.
+
+- **[Pure Skin Clinic Hessle](https://pureskinclinic.uk/pure-skin-clinic-hessle/)**: Served as a reference for layout and design inspiration, helping us craft a user-friendly and aesthetically pleasing interface tailored to our target audience.
+
+### Learning and Development
+
+- **[YouTube](https://www.youtube.com/)**: A valuable resource for tutorials, walkthroughs, and best practices in Django development, front-end design, and deployment strategies that enhanced our team's skill set and project execution.
+
+### Additional Resources
+
+- **[Bootstrap](https://getbootstrap.com/)**: Integrated for responsive design, ensuring that **Eternal Glow** is accessible and functions flawlessly across various devices and screen sizes.
+
+- **[Font Awesome](https://fontawesome.com/)**: Utilized for adding scalable vector icons that enhance the user interface and improve navigation.
+
+### Special Thanks
+
+We extend our gratitude to the open-source community and all content creators whose resources and tutorials have been instrumental in bringing **Eternal Glow** to life. Your contributions continue to empower developers and designers to build exceptional projects.
+
+---
+
+By leveraging these resources, **Eternal Glow** aims to provide an outstanding online experience for our clients, combining cutting-edge technology with thoughtful design to meet the highest standards of dermatological care.
+
