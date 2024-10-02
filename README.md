@@ -258,9 +258,7 @@ By following our Facebook Business Page, you'll be the first to know about new s
 ---
 
 
-## Resources and Acknowledgments
-
-Creating **Eternal Glow** has been a collaborative effort, leveraging a variety of tools and inspirations to deliver a seamless and visually appealing dermatology clinic website. We would like to acknowledge the following resources that played a pivotal role in the development of this project:
+## Resources
 
 ### Tools and Technologies
 
@@ -286,11 +284,4 @@ Creating **Eternal Glow** has been a collaborative effort, leveraging a variety 
 
 - **[Font Awesome](https://fontawesome.com/)**: Utilized for adding scalable vector icons that enhance the user interface and improve navigation.
 
-### Special Thanks
-
-We extend our gratitude to the open-source community and all content creators whose resources and tutorials have been instrumental in bringing **Eternal Glow** to life. Your contributions continue to empower developers and designers to build exceptional projects.
-
----
-
-By leveraging these resources, **Eternal Glow** aims to provide an outstanding online experience for our clients, combining cutting-edge technology with thoughtful design to meet the highest standards of dermatological care.
 
