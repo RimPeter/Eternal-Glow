@@ -75,5 +75,90 @@ Follow these steps to set up **Eternal Glow** on your local machine:
    ```bash
    git clone https://github.com/RimPeter/Eternal-Glow.git
    cd eternal-glow
+```
+Create a Virtual Environment (optional but recommended)
 
+Create and activate a virtual environment to manage dependencies:
 
+On macOS and Linux:
+
+```bash
+Copy code
+python3 -m venv venv
+source venv/bin/activate
+```
+On Windows:
+
+```bash
+Copy code
+python -m venv venv
+venv\Scripts\activate
+```
+Install Dependencies
+
+Install all required Python packages using pip:
+
+```bash
+Copy code
+pip install -r requirements.txt
+```
+Set Up Environment Variables
+
+Create a .env file in the project root directory to store environment variables:
+
+```bash
+Copy code
+touch .env
+```
+Add the necessary configurations to the .env file:
+
+```dotenv
+Copy code
+DEBUG=True
+SECRET_KEY=your_secret_key_here
+DATABASE_URL=sqlite:///db.sqlite3
+```
+Note: Replace your_secret_key_here with a securely generated secret key.
+
+Apply Database Migrations
+
+Apply migrations to set up the database schema:
+
+```bash
+Copy code
+python manage.py migrate
+```
+Create a Superuser (optional)
+
+If you want to access the Django admin panel, create a superuser account:
+
+```bash
+Copy code
+python manage.py createsuperuser
+```
+Collect Static Files
+
+Collect all static files into a single directory:
+
+```bash
+Copy code
+python manage.py collectstatic
+```
+Note: When prompted, type yes to confirm.
+
+Run the Development Server
+
+Start the Django development server:
+
+```bash
+Copy code
+python manage.py runserver
+```
+Access the Application
+
+Open your web browser and navigate to:
+
+```url
+Copy code
+http://127.0.0.1:8000/
+```
