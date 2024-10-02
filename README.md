@@ -63,7 +63,7 @@ typing_extensions==4.12.2
 tzdata==2024.1
 urllib3==2.2.2
 whitenoise==6.7.0
-
+```
 ### Installation Steps
 
 Follow these steps to set up **Eternal Glow** on your local machine:
